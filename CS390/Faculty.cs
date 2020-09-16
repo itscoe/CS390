@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CS390
 {
-    class Student
+    class Faculty
     {
         // SortedDictionary<Course> enrolledCourses;
         string userName;
@@ -16,32 +16,36 @@ namespace CS390
         string lastName;
         string status;
 
-        void AddCourse(string courseName)
         //adds courseName to enrolledCourses
+        void AddCourse(string courseName)
         {
 
         }
 
-        void DropCourse(string courseName)
         //verify if courseName is in enrolledCourses
         //remove courseName from enrolledCourses
+        void DropCourse(string courseName)
         {
 
         }
-        void ViewSchedule()
+
         //print out enrolledCourses
+        void ViewSchedule()
+
         {
 
         }
-        void SearchCourses()
+
         //access registrationDataBase
+        void SearchCourses()
         {
 
         }
 
-    }
-}
+        void SubmitGrades()
+        {
 
-//implement later
-// void Petition;
-// void checkGraduation;
+        }
+    }
+
+}

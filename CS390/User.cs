@@ -8,7 +8,7 @@ namespace CS390
 {
     abstract class User
     {
-        string userName;
+        string UserName { get; }
         string password;
         string firstName;
         string middleName;
@@ -19,7 +19,7 @@ namespace CS390
         User(string userName = "", string password = "", string firstName = "",
                 string middleName = "", string lastName = "", string status = "")
         {
-            this.userName = userName;
+            this.UserName = userName;
             this.password = password;
             this.firstName = firstName;
             this.middleName = middleName;
