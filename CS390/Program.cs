@@ -16,7 +16,7 @@ namespace CS390
         static void Main()
         {
 
-            StreamReader userDatabase = OpenFile("UserDatabase.txt");
+            ///StreamReader userDatabase = OpenFile("UserDatabase.txt");
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

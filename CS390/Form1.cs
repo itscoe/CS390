@@ -15,19 +15,25 @@ namespace CS390
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
             login_title.Parent = pictureBox1;
-            label2.Parent = pictureBox1;
-            label3.Parent = pictureBox1;
+            user_label.Parent = pictureBox1;
+            pass_label.Parent = pictureBox1;
+            bad_login_message.Parent = pictureBox1;
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
+            if (user_textbox.Text == "admin" && pass_textbox.Text == "admin") {
+                Form2 form2 = new Form2();
+                form2.Show();
+                Hide();
+            } else {
+                bad_login_message.Visible = true;
+            }
         }
     }
 }
