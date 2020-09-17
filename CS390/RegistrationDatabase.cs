@@ -9,24 +9,24 @@ namespace CS390
 {
     class RegistrationDatabase
     {
-        enum DatabaseType
+        public enum DatabaseType
         {
             user,
             course
         }
 
-        SortedDictionary<string, User> userDatabase = new SortedDictionary<string, User>();
+        static SortedDictionary<string, User> userDatabase = new SortedDictionary<string, User>();
 
-        void Read(StreamReader file, DatabaseType databaseType)
+        public static void Read(StreamReader file, DatabaseType databaseType)
         {
-            string fileLine = "";
-
             switch (databaseType)
             {
                 case DatabaseType.user:
                     while(!file.EndOfStream)
                     {
-                        fileLine = file.ReadLine();
+                        string[] userInfo = file.ReadLine().Split(' ');
+
+                        CreateUser(userInfo[0], userInfo[1], userInfo[2], userInfo[3], userInfo[4], userInfo[5]);
                     }
                     break;
                 case DatabaseType.course:
@@ -38,20 +38,51 @@ namespace CS390
             }
         }
 
-        void CreateUser(string userName, string password, string firstName,
+        static void CreateUser(string userName, string password, string firstName,
                 string middleName, string lastName, string status)
         {
             User user;
 
-            if (status.Equals("admin"))
-            { }
-            else if (status.Equals("faculty"))
-            { }
-            else
-            { }
+            if (status.Equals("admin")) {
+                user = new Admin(userName, password, firstName, middleName, lastName, status);
+            }
+            else if (status.Equals("faculty")) {
+                user = new Faculty(userName, password, firstName, middleName, lastName, status);
+            }
+            else {
+                user = new Student(userName, password, firstName, middleName, lastName, status);
+            }
 
-            //userDatabase.Add(userName, user);
+            userDatabase.Add(userName, user);
         }
+
+        public static User GetUser(string userName, string password)
+        {
+            if (VerifyUser(userName, password))
+                return userDatabase[userName];
+            else
+                return null;
+        }
+
+        static bool VerifyUser(string userName, string password)
+        {
+            // try-catch statement verifies that the user exists inside the dictionary
+            try
+            {
+                // assigns new user object to element <userName> in userDatabase
+                User user = userDatabase[userName];
+
+                // tests if the user object's password is the same as password passed.
+                if (user.GetPassword().Equals(password))
+                    return true;
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         void CreateCourse() { }
         void GetUser() { }
         void GetCourse() { }

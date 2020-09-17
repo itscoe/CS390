@@ -15,16 +15,13 @@ namespace CS390
         [STAThread]
         static void Main()
         {
+            StreamReader userDatabase = OpenFile("UserDatabase.txt");
 
-            ///StreamReader userDatabase = OpenFile("UserDatabase.txt");
+            RegistrationDatabase.Read(userDatabase, RegistrationDatabase.DatabaseType.user);
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
-            
-            Form1 form1 = new Form1();
-
-
         }
 
         static StreamReader OpenFile(string fileName)
@@ -33,18 +30,12 @@ namespace CS390
             {
                 StreamReader file = new StreamReader(fileName);
 
-                Console.WriteLine(file.ReadLine());
-
                 return file;
             }
             catch (Exception e)
             {
                 throw new Exception(String.Format("An error has occurred while trying to open file \"{0}\".", fileName));
             }
-
-
-
-
         }
 
     }

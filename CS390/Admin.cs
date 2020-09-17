@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CS390
 {
-    class Admin
+    class Admin : User
     {
         string userName;
         string password;
@@ -14,6 +14,22 @@ namespace CS390
         string middleName;
         string lastName;
         string status;
+
+        public Admin(string userName = "", string password = "", string firstName = "", string middleName = "", string lastName = "", string status = "")
+            : base(userName, password, firstName, middleName, lastName, status)
+        {
+            this.userName = userName;
+            this.password = password;
+            this.firstName = firstName;
+            this.middleName = middleName;
+            this.lastName = lastName;
+            this.status = status;
+        }
+
+        public override void ViewTransactionHistory()
+        {
+
+        }
 
         //adds courseName to enrolledCourses of the given professor
         void AddProfessorCourse(string courseName, Faculty professorName)
