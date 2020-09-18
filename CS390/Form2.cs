@@ -21,5 +21,10 @@ namespace CS390
         {
 
         }
+
+        private void Form2_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.OpenForms["Form1"].Close();
+        }
     }
 }
