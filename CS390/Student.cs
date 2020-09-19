@@ -9,23 +9,9 @@ namespace CS390
     class Student : User
     {
         // SortedDictionary<Course> enrolledCourses;
-        string userName;
-        string password;
-        string firstName;
-        string middleName;
-        string lastName;
-        string status;
 
         public Student(string userName = "", string password = "", string firstName = "", string middleName = "", string lastName = "", string status = "")
-            : base(userName, password, firstName, middleName, lastName, status)
-        {
-            this.userName = userName;
-            this.password = password;
-            this.firstName = firstName;
-            this.middleName = middleName;
-            this.lastName = lastName;
-            this.status = status;
-        }
+            : base(userName, password, firstName, middleName, lastName, status) { }
  
         /// <summary>
         /// Accesses user's transaction history with the database.

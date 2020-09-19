@@ -8,22 +8,11 @@ namespace CS390
 {
     class Admin : User
     {
-        string userName;
-        string password;
-        string firstName;
-        string middleName;
-        string lastName;
-        string status;
 
         public Admin(string userName = "", string password = "", string firstName = "", string middleName = "", string lastName = "", string status = "")
             : base(userName, password, firstName, middleName, lastName, status)
         {
-            this.userName = userName;
-            this.password = password;
-            this.firstName = firstName;
-            this.middleName = middleName;
-            this.lastName = lastName;
-            this.status = status;
+            
         }
 
         public override void ViewTransactionHistory()

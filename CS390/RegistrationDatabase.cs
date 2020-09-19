@@ -84,7 +84,6 @@ namespace CS390
         }
 
         void CreateCourse() { }
-        void GetUser() { }
         void GetCourse() { }
         void GetTransaction()
         {

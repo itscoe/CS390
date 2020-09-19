@@ -54,13 +54,11 @@ namespace CS390
         abstract public void ViewTransactionHistory();
         // Prints out list of transaction data.
 
-        // Get / Set functions to be added later.
         public string GetUserName() { return userName; }
         public string GetPassword() { return password; }
         public string GetFirstName() { return firstName; }
         public string GetMiddleName() { return middleName; }
         public string GetLastName() { return lastName; }
         public string GetStatus() { return status; }
-
     }
 }

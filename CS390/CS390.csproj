@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Admin.cs" />
+    <Compile Include="Course.cs" />
     <Compile Include="Student.cs" />
     <Compile Include="Faculty.cs" />
     <Compile Include="Form1.cs">
@@ -104,6 +105,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\LoginScreenBackground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\UserDatabase.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Debug\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

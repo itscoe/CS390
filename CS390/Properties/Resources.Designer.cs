@@ -69,5 +69,18 @@ namespace CS390.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to JBiden Delaware Joe Robinette Biden BObama
+        ///MRomney Mass Willard Mitt Romney faculty
+        ///BObama Illinois Barack Hussein Obama faculty
+        ///PRyan Cheese Paul Davis Ryan MRomney
+        ///Voter USA Jane Quincy Public admin.
+        /// </summary>
+        internal static string UserDatabase {
+            get {
+                return ResourceManager.GetString("UserDatabase", resourceCulture);
+            }
+        }
     }
 }
