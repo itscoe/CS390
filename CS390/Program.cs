@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,9 +15,9 @@ namespace CS390
         [STAThread]
         static void Main()
         {
-            StreamReader userDatabase = OpenFile(BuildFilePath("UserDatabase.txt"));
-            
-            RegistrationDatabase.Read(userDatabase, RegistrationDatabase.DatabaseType.user);
+            /// StreamReader userDatabase = OpenFile("UserDatabase.txt");
+
+            /// RegistrationDatabase.Read(userDatabase, RegistrationDatabase.DatabaseType.user);
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
@@ -37,15 +36,6 @@ namespace CS390
             {
                 throw new Exception(String.Format("An error has occurred while trying to open file \"{0}\".", fileName));
             }
-        }
-
-        static string BuildFilePath(string fileName)
-        {
-            string strAppPath = Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
-            string strFilePath = Path.Combine(strAppPath, "Resources");
-            string strFullFileName = Path.Combine(strFilePath, fileName);
-
-            return strFullFileName;
         }
 
     }

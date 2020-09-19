@@ -27,11 +27,14 @@ namespace CS390
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (user_textbox.Text == "admin" && pass_textbox.Text == "admin") {
+            if (user_textbox.Text == "admin" && pass_textbox.Text == "admin")
+            {
                 Form2 form2 = new Form2();
                 form2.Show();
                 Hide();
-            } else {
+            }
+            else
+            {
                 bad_login_message.Visible = true;
             }
         }
