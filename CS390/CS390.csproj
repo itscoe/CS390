@@ -114,5 +114,10 @@
   <ItemGroup>
     <Folder Include="bin\Debug\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CourseDatabase.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
