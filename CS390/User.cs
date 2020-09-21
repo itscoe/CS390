@@ -60,5 +60,14 @@ namespace CS390
         public string GetMiddleName() { return middleName; }
         public string GetLastName() { return lastName; }
         public string GetStatus() { return status; }
+        //added the sets/RDiaz
+        public void SetUserName(String newUserName) { userName = newUserName; }
+        public void SetPassword(String newPassword) { password = newPassword; }
+        public void SetFirstName(String newFirstName) { firstName = newFirstName; }
+        public void SetMiddleName(String newMiddleName) { middleName = newMiddleName; }
+        public void SetLastName(String newLastName) { lastName = newLastName; }
+        public void SetStatus(String newStatus) { status = newStatus; }
+
+
     }
 }
