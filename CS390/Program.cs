@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Reflection;
 using System.Collections.Generic;
@@ -16,10 +16,8 @@ namespace CS390
         [STAThread]
         static void Main()
         {
-            StreamReader userDatabase = OpenFile(BuildFilePath("UserDatabase.txt"));
-            StreamReader courseDatabase = OpenFile(BuildFilePath("CourseDatabase.txt"));
-
-            Console.WriteLine(courseDatabase.ReadLine());
+            StreamReader userDatabase = OpenFile("UserDatabase.txt");
+            StreamReader courseDatabase = OpenFile("CourseDatabase.txt");
 
             RegistrationDatabase.Read(userDatabase, RegistrationDatabase.DatabaseType.user);
 
