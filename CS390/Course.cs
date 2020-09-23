@@ -11,14 +11,14 @@ namespace CS390
         string courseID;
         string courseName;
         Faculty faculty;
-        float courseCredit;
+        string courseCredit;
         int numSeats;
         List<string> dayBlocks;
         List<string> timeBlocks;
 
         SortedDictionary<string ,Student> enrolledStudents;
         
-        public Course(string courseID, string courseName, Faculty faculty, int courseCredit, int numSeats, List<string> days, List<string> times)
+        public Course(string courseID, string courseName, Faculty faculty, string courseCredit, int numSeats, List<string> days, List<string> times)
         {
             this.courseID = courseID;
             this.courseName = courseName;
