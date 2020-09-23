@@ -32,11 +32,11 @@ namespace CS390
         /// <summary>Accesses database with string userName and string password. </summary>
         /// <param name="userName">The user's username.</param>
         /// <param name="password">The user's password.</param>
-        public void LogIn(string userName, string password)
+        public static User LogIn(string userName, string password)
         {
             try
             {
-                RegistrationDatabase.GetUser(userName, password);
+                return RegistrationDatabase.GetUser(userName, password);
             }
             catch(Exception e)
             {

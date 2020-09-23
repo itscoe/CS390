@@ -15,6 +15,7 @@ namespace CS390
         public Form2()
         {
             InitializeComponent();
+            Console.Write(Form1.current_user);
         }
 
         private void Form2_Load(object sender, EventArgs e)
