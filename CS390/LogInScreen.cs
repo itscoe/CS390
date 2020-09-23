@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace CS390
 {
-    public partial class Form1 : Form
+    public partial class LogInScreen : Form
     {
         internal static User current_user;
 
-        public Form1()
+        public LogInScreen()
         {
             InitializeComponent();
         }
@@ -36,7 +36,7 @@ namespace CS390
                 bad_login_message.Visible = true;
             } else
             {
-                Form2 form2 = new Form2();
+                StudentDashboard form2 = new StudentDashboard();
                 form2.Show();
                 Hide();
             }

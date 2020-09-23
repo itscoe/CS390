@@ -1,6 +1,6 @@
 ﻿namespace CS390
 {
-    partial class Form2
+    partial class StudentDashboard
     {
         /// <summary>
         /// Required designer variable.

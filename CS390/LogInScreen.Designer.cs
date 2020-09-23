@@ -1,6 +1,6 @@
 ﻿namespace CS390
 {
-    partial class Form1
+    partial class LogInScreen
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LogInScreen));
             this.login_title = new System.Windows.Forms.Label();
             this.user_label = new System.Windows.Forms.Label();
             this.pass_label = new System.Windows.Forms.Label();
