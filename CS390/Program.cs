@@ -17,14 +17,12 @@ namespace CS390
         static void Main()
         {
             StreamReader userDatabase = OpenFile(BuildFilePath("UserDatabase.txt"));
-            StreamReader courseDatabase = OpenFile(BuildFilePath("CourseDatabase.txt"));
 
             RegistrationDatabase.Read(userDatabase, RegistrationDatabase.DatabaseType.user);
-            RegistrationDatabase.Read(courseDatabase, RegistrationDatabase.DatabaseType.course);
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new LogInScreen());
         }
 
         static StreamReader OpenFile(string fileName)

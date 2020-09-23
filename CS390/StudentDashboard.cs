@@ -10,11 +10,12 @@ using System.Windows.Forms;
 
 namespace CS390
 {
-    public partial class Form2 : Form
+    public partial class StudentDashboard : Form
     {
-        public Form2()
+        public StudentDashboard()
         {
             InitializeComponent();
+            Console.Write(LogInScreen.current_user);
         }
 
         private void Form2_Load(object sender, EventArgs e)
