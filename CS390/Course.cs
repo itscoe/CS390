@@ -40,5 +40,42 @@ namespace CS390
         {
             enrolledStudents.Remove(student.GetUserName());
         }
+        public string GetCourseID() 
+        {
+            return courseID;
+        }
+        public string GetCourseName()
+        {
+            return courseName;
+        }
+        public Faculty GetFaculty()
+        {
+            return faculty;
+        }
+        public float GetCourseCredit()
+        {
+            return courseCredit;
+        }
+        public int GetNumSeats()
+        {
+            return numSeats;
+        }
+        public void SetCourseID(string newCourseid)
+        {
+            courseID=newCourseid;
+        }
+        public void SetCourseName(string newCourseName)
+        {
+            courseName = newCourseName;
+        }
+        public void SetFaculty(Faculty newFaculty)
+        {
+            faculty = newFaculty;
+        }
+        public void SetCourseCredit(int newCourseCredit)
+        {
+            courseCredit = newCourseCredit;
+        }
+
     }
 }
