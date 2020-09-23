@@ -61,6 +61,20 @@ namespace CS390.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CS-125-00  Comp Sci I      BObama     1.00 30  2 21202 08253
+        ///CS-225-00  Comp Sci II     BObama     1.00 20  1 21242
+        ///CS-355-00  Adv OOP         BObama     1.00 15  1 21282
+        ///MTH-135-01 Calculus I      MRomney    1.00 24  1 15253
+        ///MTH-135-02 Calculus I      MRomney    1.00 20  1 15223
+        ///MTH-145-00 Calculus II     MRomney    1.00 112 2 12162 04302.
+        /// </summary>
+        internal static string CourseDatabase {
+            get {
+                return ResourceManager.GetString("CourseDatabase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap LoginScreenBackground {

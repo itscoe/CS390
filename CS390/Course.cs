@@ -10,16 +10,24 @@ namespace CS390
     {
         string courseID;
         string courseName;
-        string courseDescription;
         Faculty faculty;
-        SortedDictionary<string ,Student> enrolledStudents;
+        float courseCredit;
+        int numSeats;
+        List<string> dayBlocks;
+        List<string> timeBlocks;
 
-        public Course(string courseID, string courseName, string courseDescription, Faculty faculty)
+        SortedDictionary<string ,Student> enrolledStudents;
+        
+        public Course(string courseID, string courseName, Faculty faculty, int courseCredit, int numSeats, List<string> days, List<string> times)
         {
             this.courseID = courseID;
             this.courseName = courseName;
-            this.courseDescription = courseDescription;
             this.faculty = faculty;
+            this.courseCredit = courseCredit;
+            this.numSeats = numSeats;
+            this.dayBlocks = days;
+            this.timeBlocks = times;
+
             enrolledStudents = new SortedDictionary<string, Student>();
         }
 
