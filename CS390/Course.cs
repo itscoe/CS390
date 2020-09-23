@@ -11,14 +11,14 @@ namespace CS390
         string courseID;
         string courseName;
         Faculty faculty;
-        float courseCredit;
+        string courseCredit;
         int numSeats;
         List<string> dayBlocks;
         List<string> timeBlocks;
 
         SortedDictionary<string ,Student> enrolledStudents;
         
-        public Course(string courseID, string courseName, Faculty faculty, int courseCredit, int numSeats, List<string> days, List<string> times)
+        public Course(string courseID, string courseName, Faculty faculty, string courseCredit, int numSeats, List<string> days, List<string> times)
         {
             this.courseID = courseID;
             this.courseName = courseName;
@@ -52,7 +52,7 @@ namespace CS390
         {
             return faculty;
         }
-        public float GetCourseCredit()
+        public string GetCourseCredit()
         {
             return courseCredit;
         }
@@ -72,7 +72,7 @@ namespace CS390
         {
             faculty = newFaculty;
         }
-        public void SetCourseCredit(int newCourseCredit)
+        public void SetCourseCredit(string newCourseCredit)
         {
             courseCredit = newCourseCredit;
         }
