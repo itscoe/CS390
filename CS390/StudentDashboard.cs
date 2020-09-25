@@ -21,6 +21,10 @@ namespace CS390
 
         private void Form2_Load(object sender, EventArgs e)
         {
+            label1.Parent = pictureBox1;
+            label2.Parent = pictureBox1;
+            label1.Location = new Point(10, label1.Location.Y);
+            label2.Location = new Point(10, label2.Location.Y);
             var course_array = from row in RegistrationDatabase.GetCourses() select new { Id = row.Value.courseID, 
                 Name = row.Value.courseName, Faculty = row.Value.faculty.GetUserName(), Credits = row.Value.courseCredit, 
                 Seats = row.Value.numSeats, Dates = String.Join(", ", row.Value.dayBlocks), Times = String.Join(", ", row.Value.timeBlocks)

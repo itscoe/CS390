@@ -19,7 +19,7 @@ namespace CS390.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -61,12 +61,12 @@ namespace CS390.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CS-125-00  Comp Sci I      BObama     1.00 30  2 21202 08253
-        ///CS-225-00  Comp Sci II     BObama     1.00 20  1 21242
-        ///CS-355-00  Adv OOP         BObama     1.00 15  1 21282
-        ///MTH-135-01 Calculus I      MRomney    1.00 24  1 15253
-        ///MTH-135-02 Calculus I      MRomney    1.00 20  1 15223
-        ///MTH-145-00 Calculus II     MRomney    1.00 112 2 12162 04302.
+        ///   Looks up a localized string similar to CS-125-00 CompSciI BObama 1.00 30 2 21202 08253
+        ///CS-225-00 CompSciII BObama 1.00 20 1 21242
+        ///CS-355-00 AdvOOP BObama 1.00 15 1 21282
+        ///MTH-135-01 CalculusI MRomney 1.00 24 1 15253
+        ///MTH-135-02 CalculusI MRomney 1.00 20 1 15223
+        ///MTH-145-00 CalculusII MRomney 1.00 112 2 12162 04302.
         /// </summary>
         internal static string CourseDatabase {
             get {
@@ -77,9 +77,29 @@ namespace CS390.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Dashboard_Background {
+            get {
+                object obj = ResourceManager.GetObject("Dashboard Background", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LoginScreenBackground {
             get {
                 object obj = ResourceManager.GetObject("LoginScreenBackground", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap searchIcon {
+            get {
+                object obj = ResourceManager.GetObject("searchIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
