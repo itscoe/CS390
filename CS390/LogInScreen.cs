@@ -10,9 +10,11 @@ using System.Windows.Forms;
 
 namespace CS390
 {
-    public partial class Form1 : Form
+    public partial class LogInScreen : Form
     {
-        public Form1()
+        internal static User current_user;
+
+        public LogInScreen()
         {
             InitializeComponent();
         }
@@ -27,15 +29,16 @@ namespace CS390
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (user_textbox.Text == "admin" && pass_textbox.Text == "admin")
-            {
-                Form2 form2 = new Form2();
-                form2.Show();
-                Hide();
-            }
-            else
+            current_user = User.LogIn(user_textbox.Text, pass_textbox.Text);
+
+            if (current_user is null)
             {
                 bad_login_message.Visible = true;
+            } else
+            {
+                StudentDashboard form2 = new StudentDashboard();
+                form2.Show();
+                Hide();
             }
         }
     }
