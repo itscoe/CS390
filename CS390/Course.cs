@@ -8,13 +8,13 @@ namespace CS390
 {
     class Course
     {
-        string courseID;
-        string courseName;
-        Faculty faculty;
-        string courseCredit;
-        int numSeats;
-        List<string> dayBlocks;
-        List<string> timeBlocks;
+        public string courseID { get; }
+        public string courseName { get; }
+        public Faculty faculty { get; }
+        public string courseCredit { get; }
+        public int numSeats { get; }
+        public List<string> dayBlocks { get; }
+        public List<string> timeBlocks { get; }
 
         SortedDictionary<string ,Student> enrolledStudents;
         

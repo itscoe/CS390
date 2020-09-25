@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.Design;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -20,7 +21,11 @@ namespace CS390
 
         private void Form2_Load(object sender, EventArgs e)
         {
-
+            var course_array = from row in RegistrationDatabase.GetCourses() select new { Id = row.Value.courseID, 
+                Name = row.Value.courseName, Faculty = row.Value.faculty.GetUserName(), Credits = row.Value.courseCredit, 
+                Seats = row.Value.numSeats, Dates = String.Join(", ", row.Value.dayBlocks), Times = String.Join(", ", row.Value.timeBlocks)
+            };
+            dataGridView1.DataSource = course_array.ToArray();
         }
 
         private void Form2_FormClosed(object sender, FormClosedEventArgs e)

@@ -136,6 +136,11 @@ namespace CS390
             }
         }
 
+        public static SortedDictionary<string, Course> GetCourses()
+        {
+            return courseDatabase;
+        }
+
         /// <summary>
         /// Helper method used to bypass verification, only used by RegistrationDatabase methods.
         /// </summary>
