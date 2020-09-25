@@ -76,6 +76,17 @@ namespace CS390
         {
             courseCredit = newCourseCredit;
         }
+
+        public List<string> GetTimeBlocks()
+        {
+            return timeBlocks;
+        }
+
+        public List<string> GetDayBlocks()
+        {
+            return dayBlocks;
+        }
+
     }
 
 }

@@ -25,9 +25,9 @@ namespace CS390
             label2.Parent = pictureBox1;
             label1.Location = new Point(10, label1.Location.Y);
             label2.Location = new Point(10, label2.Location.Y);
-            var course_array = from row in RegistrationDatabase.GetCourses() select new { Id = row.Value.courseID, 
-                Name = row.Value.courseName, Faculty = row.Value.faculty.GetUserName(), Credits = row.Value.courseCredit, 
-                Seats = row.Value.numSeats, Dates = String.Join(", ", row.Value.dayBlocks), Times = String.Join(", ", row.Value.timeBlocks)
+            var course_array = from row in RegistrationDatabase.GetCourses() select new { Id = row.Value.GetCourseID(), 
+                Name = row.Value.GetCourseName(), Faculty = row.Value.faculty.GetUserName(), Credits = row.Value.GetCourseCredit(), 
+                Seats = row.Value.GetNumSeats(), Dates = String.Join(", ", row.Value.GetDayBlocks()), Times = String.Join(", ", row.Value.GetTimeBlocks())
             };
             dataGridView1.DataSource = course_array.ToArray();
         }
