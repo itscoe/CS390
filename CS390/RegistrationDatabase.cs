@@ -73,9 +73,10 @@ namespace CS390
 
                             float time = (((timeBlock / 10) % 100) / 2);
 
-                            if (time > 12)
+                            if (time >= 12)
                             {    
-                                time -= 12;
+                                if(time > 12)
+                                    time -= 12;
                                 int minute = (int)(((decimal)time % 1) * 10);
                                 minute = (60 / 10) * minute;
                                 times += time + ":" + minute + "0" + " PM";
