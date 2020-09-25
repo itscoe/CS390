@@ -22,10 +22,6 @@ namespace CS390
             RegistrationDatabase.Read(userDatabase, RegistrationDatabase.DatabaseType.user);
             RegistrationDatabase.Read(courseDatabase, RegistrationDatabase.DatabaseType.course);
 
-            StreamReader courseDatabase = OpenFile(BuildFilePath("CourseDatabase.txt"));
-
-            RegistrationDatabase.Read(courseDatabase, RegistrationDatabase.DatabaseType.course);
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LogInScreen());
