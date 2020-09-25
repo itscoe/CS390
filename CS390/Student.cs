@@ -8,7 +8,7 @@ namespace CS390
 {
     class Student : User
     {
-        // SortedDictionary<Course> enrolledCourses;
+        SortedDictionary<string, Course> enrolledCourses;
 
         public Student(string userName = "", string password = "", string firstName = "", string middleName = "", string lastName = "", string status = "")
             : base(userName, password, firstName, middleName, lastName, status) { }
@@ -20,16 +20,23 @@ namespace CS390
         {
 
         }
-        void AddCourse(string courseName)
+        void AddCourse(string courseID)
         //adds courseName to enrolledCourses
         {
-
+            enrolledCourses.Add(courseID, RegistrationDatabase.GetCourse(courseID));
         }
-        void DropCourse(string courseName)
+        void DropCourse(string courseID)
         //verify if courseName is in enrolledCourses
         //remove courseName from enrolledCourses
         {
-
+            try
+            {
+                enrolledCourses.Remove(courseID);
+            }
+            catch(Exception e)
+            {
+                return;
+            }
         }
         void ViewSchedule()
         //print out enrolledCourses
