@@ -107,5 +107,10 @@ namespace CS390
             }
             Form2_Load(sender, e);
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }
