@@ -25,25 +25,37 @@ namespace CS390
                 case DatabaseType.user:
                     while(!file.EndOfStream)
                     {
-                        string[] userInfo = file.ReadLine().Split(' ');
+                        string userInfo = file.ReadLine();
+                        string user = userInfo.Substring(0,11).TrimEnd(' '); userInfo = userInfo.Remove(0, 11);
+                        string pass = userInfo.Substring(0,11).TrimEnd(' '); userInfo = userInfo.Remove(0, 11);
+                        string first = userInfo.Substring(0, 16).TrimEnd(' '); userInfo = userInfo.Remove(0, 16);
+                        string middle = userInfo.Substring(0, 16).TrimEnd(' '); userInfo = userInfo.Remove(0, 16);
+                        string last = userInfo.Substring(0, 16).TrimEnd(' '); userInfo = userInfo.Remove(0, 16);
+                        string stat = userInfo.Substring(0, userInfo.Length).TrimEnd(' ');
 
-                        CreateUser(userInfo[0], userInfo[1], userInfo[2], userInfo[3], userInfo[4], userInfo[5]);
+                        Console.WriteLine(String.Format("user: {0}\npass: {1}\nfirst: {2}\nmiddle: {3}\nlast: {4}\nstatus: {5}",
+                            user, pass, first, middle, last, stat));
+
+                        CreateUser(user, pass, first, middle, last, stat);
                     }
                     break;
                 case DatabaseType.course:
                     while(!file.EndOfStream)
                     {
-                        string[] courseInfo = file.ReadLine().Split(' ');
-                        Faculty faculty = (Faculty)GetUser(courseInfo[2]);
-                        string courseCredit = courseInfo[3] + "0";
-                        int seatCount = Convert.ToInt16(courseInfo[4]);
-                        int blocks = Convert.ToInt16(courseInfo[5]);
+                        string courseInfo = file.ReadLine();
+                        string courseName = courseInfo.Substring(0, 11).TrimEnd(' '); courseInfo = courseInfo.Remove(0, 11);
+                        string courseTitle = courseInfo.Substring(0, 16).TrimEnd(' '); courseInfo = courseInfo.Remove(0, 16);
+                        Faculty faculty = (Faculty)GetUser(courseInfo.Substring(0,11).TrimEnd(' ')); courseInfo = courseInfo.Remove(0, 11);
+                        string courseCredit = courseInfo.Substring(0, 5).TrimEnd(' '); courseInfo = courseInfo.Remove(0, 5);
+                        int seatCount = Convert.ToInt16(courseInfo.Substring(0,4).TrimEnd(' ')); courseInfo = courseInfo.Remove(0, 4);
+                        int blocks = Convert.ToInt16(courseInfo.Substring(0,2).TrimEnd(' ')); courseInfo = courseInfo.Remove(0, 2);
+                   
                         List<string> dayBlocks = new List<string>();
                         List<string> timeBlocks = new List<string>();
 
                         for(int x = 1; x <= blocks; x++)
                         {
-                            int timeBlock = Convert.ToInt16(courseInfo[5 + x]);
+                            int timeBlock = Convert.ToInt16(courseInfo.Substring(0,6).TrimEnd(' ')); courseInfo = courseInfo.Remove(0, 6);
                             string days = "";
                             string times = "";
                             int day = timeBlock / 1000;
@@ -92,7 +104,10 @@ namespace CS390
                             timeBlocks.Add(times);
                         }
 
-                        CreateCourse(courseInfo[0], courseInfo[1], faculty, courseCredit, seatCount, dayBlocks, timeBlocks);
+                       // Console.WriteLine(String.Format("name: {0}\ntitle: {1}\nfaculty: {2}\credit: {3}\nseats: {4}\nblocks: {5}",
+                        //   user, pass, first, middle, last, stat));
+
+                        CreateCourse(courseName, courseTitle, faculty, courseCredit, seatCount, dayBlocks, timeBlocks);
                     }
                     break;
             }
