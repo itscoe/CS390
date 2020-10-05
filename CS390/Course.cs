@@ -110,11 +110,11 @@ namespace CS390
             return dayBlocks;
         }
 
-        public int GetNumCourses() { return numCourses; }
-        public List<string> GetCourseIDs() { return courseIDs; }
-        public List<string> GetCourseCredits() { return courseCredits; }
-        public List<string> GetTerms() { return terms; }
-        public List<string> GetGrades() { return grades; }
+        public int GetHistoryNumCourses() { return numCourses; }
+        public List<string> GetHistoryCourseIDs() { return courseIDs; }
+        public List<string> GetHistoryCourseCredits() { return courseCredits; }
+        public List<string> GetHistoryTerms() { return terms; }
+        public List<string> GetHistoryGrades() { return grades; }
 
     }
 
