@@ -32,7 +32,7 @@ namespace CS390
             label1.Location = new Point(10, label1.Location.Y);
             label2.Location = new Point(10, label2.Location.Y);
             var course_array = from row in RegistrationDatabase.GetCourses() select new { Id = row.Value.GetCourseID(), 
-                Name = row.Value.GetCourseName(), Faculty = row.Value.faculty.GetUserName(), Credits = row.Value.GetCourseCredit(), 
+                Name = row.Value.GetCourseName(), Faculty = row.Value.GetFaculty().GetUserName(), Credits = row.Value.GetCourseCredit(), 
                 Seats = row.Value.GetNumSeats(), Dates = String.Join(", ", row.Value.GetDayBlocks()), Times = String.Join(", ", row.Value.GetTimeBlocks())
             };
             dataGridView1.DataSource = course_array.ToArray();
@@ -43,7 +43,7 @@ namespace CS390
                                            {
                                                Id = row.Value.GetCourseID(),
                                                Name = row.Value.GetCourseName(),
-                                               Faculty = row.Value.faculty.GetUserName(),
+                                               Faculty = row.Value.GetFaculty().GetUserName(),
                                                Credits = row.Value.GetCourseCredit(),
                                                Seats = row.Value.GetNumSeats(),
                                                Dates = String.Join(", ", row.Value.GetDayBlocks()),

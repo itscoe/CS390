@@ -12,7 +12,8 @@ namespace CS390
         public enum DatabaseType
         {
             user,
-            course
+            course,
+            courseHistory
         }
 
         static SortedDictionary<string, User> userDatabase = new SortedDictionary<string, User>();
@@ -32,9 +33,6 @@ namespace CS390
                         string middle = userInfo.Substring(0, 16).TrimEnd(' '); userInfo = userInfo.Remove(0, 16);
                         string last = userInfo.Substring(0, 16).TrimEnd(' '); userInfo = userInfo.Remove(0, 16);
                         string stat = userInfo.Substring(0, userInfo.Length).TrimEnd(' ');
-
-                        Console.WriteLine(String.Format("user: {0}\npass: {1}\nfirst: {2}\nmiddle: {3}\nlast: {4}\nstatus: {5}",
-                            user, pass, first, middle, last, stat));
 
                         CreateUser(user, pass, first, middle, last, stat);
                     }
@@ -104,12 +102,38 @@ namespace CS390
                             timeBlocks.Add(times);
                         }
 
-                       // Console.WriteLine(String.Format("name: {0}\ntitle: {1}\nfaculty: {2}\credit: {3}\nseats: {4}\nblocks: {5}",
-                        //   user, pass, first, middle, last, stat));
-
                         CreateCourse(courseName, courseTitle, faculty, courseCredit, seatCount, dayBlocks, timeBlocks);
                     }
                     break;
+                case DatabaseType.courseHistory:
+                    while(!file.EndOfStream)
+                    {
+                        string historyInfo = file.ReadLine();
+                        string user = historyInfo.Substring(0, 11).TrimEnd(' '); historyInfo = historyInfo.Remove(0, 11);
+                        int numCourses = Convert.ToInt16(historyInfo.Substring(0, 3).TrimEnd(' ')); historyInfo = historyInfo.Remove(0, 3);
+                        List<string> courseIDs = new List<string>();
+                        List<string> terms = new List<string>();
+                        List<string> credits = new List<string>();
+                        List<string> grades = new List<string>();
+
+                        for(int i = 0; i < numCourses; i++)
+                        {
+                            string courseID = historyInfo.Substring(0, 11).TrimEnd(' '); historyInfo = historyInfo.Remove(0, 11);
+                            string term = historyInfo.Substring(0, 4).TrimEnd(' '); historyInfo = historyInfo.Remove(0, 4);
+                            string credit = historyInfo.Substring(0, 5).TrimEnd(' '); historyInfo = historyInfo.Remove(0, 5);
+                            string grade = historyInfo.Substring(0, 4).TrimEnd(' '); historyInfo = historyInfo.Remove(0, 4);
+
+                            Console.WriteLine(String.Format("ID: {0}\nTerm: {1}\nCredit: {2}\nGrade: {3}", courseID, term, credit, grade));
+
+                            courseIDs.Add(courseID);
+                            terms.Add(term);
+                            credits.Add(credit);
+                            grades.Add(grade);
+                        }
+
+                        CreateHistory(user, numCourses, courseIDs, terms, credits, grades);
+                    }
+                break;
             }
         }
 
@@ -138,6 +162,13 @@ namespace CS390
             }
 
             userDatabase.Add(userName, user);
+        }
+
+        static void CreateHistory(string userName, int numCourses, List<string> courseName, List<string> term, List<string> courseCredit, List<string> grade)
+        {
+            Student student = (Student)GetUser(userName);
+            Course course = new Course(student, numCourses, courseName, term, courseCredit, grade);
+            student.AddCourseHistory(course);
         }
 
         public static Course GetCourse(string courseID)

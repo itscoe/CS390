@@ -18,9 +18,11 @@ namespace CS390
         {
             StreamReader userDatabase = OpenFile(BuildFilePath("UserDatabase.txt"));
             StreamReader courseDatabase = OpenFile(BuildFilePath("CourseDatabase.txt"));
+            StreamReader courseHistoryDatabase = OpenFile(BuildFilePath("CourseHistoryDatabase.txt"));
 
             RegistrationDatabase.Read(userDatabase, RegistrationDatabase.DatabaseType.user);
             RegistrationDatabase.Read(courseDatabase, RegistrationDatabase.DatabaseType.course);
+            RegistrationDatabase.Read(courseHistoryDatabase, RegistrationDatabase.DatabaseType.courseHistory);
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

@@ -8,16 +8,26 @@ namespace CS390
 {
     class Course
     {
-        public string courseID;
-        public string courseName;
-        public Faculty faculty;
-        public string courseCredit;
-        public int numSeats;
-        public List<string> dayBlocks;
-        public List<string> timeBlocks;
+        string courseID;
+        string courseName;
+        Faculty faculty;
+        string courseCredit;
+        int numSeats;
+        List<string> dayBlocks;
+        List<string> timeBlocks;
+
+        Student student;
+        int numCourses;
+        List<string> courseIDs;
+        List<string> courseCredits;
+        List<string> terms;
+        List<string> grades;
 
         SortedDictionary<string ,Student> enrolledStudents;
         
+        /// <summary>
+        /// Used for CourseDatabase Creation
+        /// </summary>
         public Course(string courseID, string courseName, Faculty faculty, string courseCredit, int numSeats, List<string> days, List<string> times)
         {
             this.courseID = courseID;
@@ -31,15 +41,28 @@ namespace CS390
             enrolledStudents = new SortedDictionary<string, Student>();
         }
 
+        /// <summary>
+        /// Used for CourseHistoryDatabase Creation
+        /// </summary>
+        public Course(Student student, int numCourses, List<string> courseIDs, List<string> terms, List<string> courseCredits, List<string> grades)
+        {
+            this.student = student;
+            this.numCourses = numCourses;
+            this.courseIDs = courseIDs;
+            this.terms = terms;
+            this.courseCredits = courseCredits;
+            this.grades = grades;
+        }
+
         public void EnrollStudent(Student student)
         {
             enrolledStudents.Add(student.GetUserName(), student);
         }
-
         public void WithdrawStudent(Student student)
         {
             enrolledStudents.Remove(student.GetUserName());
         }
+
         public string GetCourseID()
         {
             return courseID;
@@ -60,6 +83,7 @@ namespace CS390
         {
             return numSeats;
         }
+
         public void SetCourseID(string newCourseid)
         {
             courseID = newCourseid;
@@ -81,11 +105,16 @@ namespace CS390
         {
             return timeBlocks;
         }
-
         public List<string> GetDayBlocks()
         {
             return dayBlocks;
         }
+
+        public int GetNumCourses() { return numCourses; }
+        public List<string> GetCourseIDs() { return courseIDs; }
+        public List<string> GetCourseCredits() { return courseCredits; }
+        public List<string> GetTerms() { return terms; }
+        public List<string> GetGrades() { return grades; }
 
     }
 

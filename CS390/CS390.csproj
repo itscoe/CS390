@@ -123,5 +123,10 @@
   <ItemGroup>
     <None Include="Resources\searchIcon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CourseHistoryDatabase.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
