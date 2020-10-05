@@ -48,7 +48,6 @@ namespace CS390
         //access registrationDataBase
         {
             courseHistory.Add(course);
-            Console.WriteLine(courseHistory[0].GetHistoryCourseCredits()[0]);
         }
 
         public List<Course> GetCourseHistory()

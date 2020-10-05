@@ -123,8 +123,6 @@ namespace CS390
                             string credit = historyInfo.Substring(0, 5).TrimEnd(' '); historyInfo = historyInfo.Remove(0, 5);
                             string grade = historyInfo.Substring(0, 4).TrimEnd(' '); historyInfo = historyInfo.Remove(0, 4);
 
-                            Console.WriteLine(String.Format("ID: {0}\nTerm: {1}\nCredit: {2}\nGrade: {3}", courseID, term, credit, grade));
-
                             courseIDs.Add(courseID);
                             terms.Add(term);
                             credits.Add(credit);
