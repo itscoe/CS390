@@ -14,8 +14,6 @@ namespace CS390
     public partial class StudentDashboard : Form
     {
         private Student current_user;
-        private object sender;
-        private EventArgs e;
 
         public StudentDashboard()
         {
@@ -25,8 +23,6 @@ namespace CS390
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            sender = sender;
-            e = e;
             label1.Parent = pictureBox1;
             label2.Parent = pictureBox1;
             label1.Location = new Point(10, label1.Location.Y);
@@ -36,24 +32,27 @@ namespace CS390
                 Seats = row.Value.GetNumSeats(), Dates = String.Join(", ", row.Value.GetDayBlocks()), Times = String.Join(", ", row.Value.GetTimeBlocks())
             };
             dataGridView1.DataSource = course_array.ToArray();
-            try
-            {
-                var student_course_array = from row in current_user.GetCourses()
-                                           select new
-                                           {
-                                               Id = row.Value.GetCourseID(),
-                                               Name = row.Value.GetCourseName(),
-                                               Faculty = row.Value.GetFaculty().GetUserName(),
-                                               Credits = row.Value.GetCourseCredit(),
-                                               Seats = row.Value.GetNumSeats(),
-                                               Dates = String.Join(", ", row.Value.GetDayBlocks()),
-                                               Times = String.Join(", ", row.Value.GetTimeBlocks())
-                                           };
-                dataGridView2.DataSource = student_course_array.ToArray();
-            } catch
-            {
-                Console.WriteLine("No Courses for Student Yet");
-            }
+            var student_course_array = from row in current_user.GetCourses()
+                                        select new
+                                        {
+                                            Id = row.Value.GetCourseID(),
+                                            Name = row.Value.GetCourseName(),
+                                            Faculty = row.Value.GetFaculty().GetUserName(),
+                                            Credits = row.Value.GetCourseCredit(),
+                                            Seats = row.Value.GetNumSeats(),
+                                            Dates = String.Join(", ", row.Value.GetDayBlocks()),
+                                            Times = String.Join(", ", row.Value.GetTimeBlocks())
+                                        };
+            dataGridView2.DataSource = student_course_array.ToArray();
+            var student_course_history_array = from row in current_user.GetCourseHistory()
+                                       select new
+                                       {
+                                           Id = row.GetCourseID(),
+                                           Name = row.GetCourseName(),
+                                           Credits = row.GetCourseCredit(),
+                                           Grade = row.GetGrades(),
+                                       };
+            dataGridView3.DataSource = student_course_history_array.ToArray();
         }
 
         private void Form2_FormClosed(object sender, FormClosedEventArgs e)
