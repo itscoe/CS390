@@ -111,6 +111,7 @@ namespace CS390
                         string historyInfo = file.ReadLine();
                         string user = historyInfo.Substring(0, 11).TrimEnd(' '); historyInfo = historyInfo.Remove(0, 11);
                         int numCourses = Convert.ToInt16(historyInfo.Substring(0, 3).TrimEnd(' ')); historyInfo = historyInfo.Remove(0, 3);
+                        Console.WriteLine(numCourses);
                         List<string> courseIDs = new List<string>();
                         List<string> terms = new List<string>();
                         List<string> credits = new List<string>();
