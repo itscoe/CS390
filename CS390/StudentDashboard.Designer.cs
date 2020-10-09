@@ -84,6 +84,7 @@
             this.button1.Text = "Courses";
             this.button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button5
             // 
@@ -133,6 +134,7 @@
             this.button2.Text = "Course History";
             this.button2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // databaseTypeBindingSource
             // 
@@ -230,6 +232,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(937, 450);
             this.tabControl1.TabIndex = 8;
+            this.tabControl1.Visible = false;
             // 
             // tabPage1
             // 
