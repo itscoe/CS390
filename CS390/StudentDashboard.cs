@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -71,12 +72,101 @@ namespace CS390
                 }
                 else
                 {
-                    try
+                    var addCourse = true;
+                    foreach (DataGridViewRow d_row_2 in dataGridView2.Rows)
                     {
-                        current_user.AddCourse((string)d_row.Cells[1].Value);
-                    } catch
+                        if(addCourse && d_row.Cells[1].Value == d_row_2.Cells[1].Value)
+                        {
+                            addCourse = false;
+                            System.Windows.Forms.MessageBox.Show("Already enrolled in course");
+                        }
+                        if (addCourse)
+                        {
+                            string new_course_id = (string)d_row.Cells[1].Value;
+                            string old_course_id = (string)d_row_2.Cells[1].Value;
+                            string[] new_course_split = new_course_id.Split('-');
+                            List<string> new_course_split_list = new List<string>(new_course_split);
+                            string[] old_course_split = old_course_id.Split('-');
+                            List<string> old_course_split_list = new List<string>(old_course_split);
+                            Console.WriteLine(new_course_split_list[0]);
+                            Console.WriteLine(old_course_split_list[0]);
+                            Console.WriteLine(new_course_split_list[1]);
+                            Console.WriteLine(old_course_split_list[1]);
+                            if (new_course_split_list[0] == old_course_split_list[0] && new_course_split_list[1] == old_course_split_list[1])
+                            {
+                                addCourse = false;
+                                System.Windows.Forms.MessageBox.Show("Already enrolled in different section of course");
+                            }
+                        }
+                        if (addCourse)
+                        {
+                            List<string> new_time_slots = new List<string>();
+                            string new_days_string = (string)d_row.Cells[6].Value;
+                            string[] new_days_split = new_days_string.Split(',');
+                            string new_times_string = (string)d_row.Cells[7].Value;
+                            string[] new_times_split = new_times_string.Split(',');
+                            int i = 0;
+                            foreach (string days in new_days_split) {
+                                string[] individual_days = Regex.Split(days.Trim(), string.Empty);
+                                foreach (string day in individual_days)
+                                {
+                                    string[] possible_days = { "M", "T", "W", "R", "F" };
+                                    if (Array.Exists(possible_days, element => element == day))
+                                    {
+                                        new_time_slots.Add(day + new_times_split[i].Trim());
+                                    }
+                                }
+                                i += 1;
+                            }
+
+                            List<string> old_time_slots = new List<string>();
+                            string old_days_string = (string)d_row_2.Cells[6].Value;
+                            string[] old_days_split = old_days_string.Split(',');
+                            string old_times_string = (string)d_row_2.Cells[7].Value;
+                            string[] old_times_split = old_times_string.Split(',');
+                            int j = 0;
+                            foreach (string days in old_days_split)
+                            {
+                                string[] individual_days = Regex.Split(days.Trim(), string.Empty);
+                                foreach (string day in individual_days)
+                                {
+                                    string[] possible_days = { "M", "T", "W", "R", "F" };
+                                    if (Array.Exists(possible_days, element => element == day))
+                                    {
+                                        old_time_slots.Add(day + old_times_split[j].Trim());
+                                    }
+                                }
+                                j += 1;
+                            }
+                            if (new_time_slots.Intersect(old_time_slots).Any())
+                            {
+                                addCourse = false;
+                                System.Windows.Forms.MessageBox.Show("Scheduling conflict with " + d_row_2.Cells[1].Value);
+                            }
+                        }
+                    }
+                    if (addCourse)
                     {
-                        System.Windows.Forms.MessageBox.Show("Already enrolled in course");
+                        try
+                        {
+                            current_user.AddCourse((string)d_row.Cells[1].Value);
+                            var student_course_array = from row in current_user.GetCourses()
+                                                       select new
+                                                       {
+                                                           Id = row.Value.GetCourseID(),
+                                                           Name = row.Value.GetCourseName(),
+                                                           Faculty = row.Value.GetFaculty().GetUserName(),
+                                                           Credits = row.Value.GetCourseCredit(),
+                                                           Seats = row.Value.GetNumSeats(),
+                                                           Dates = String.Join(", ", row.Value.GetDayBlocks()),
+                                                           Times = String.Join(", ", row.Value.GetTimeBlocks())
+                                                       };
+                            dataGridView2.DataSource = student_course_array.ToArray();
+                        }
+                        catch
+                        {
+                            System.Windows.Forms.MessageBox.Show("Error adding course");
+                        }
                     }
                 }
             }
