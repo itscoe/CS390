@@ -17,11 +17,9 @@ namespace CS390
         List<string> timeBlocks;
 
         Student student;
-        int numCourses;
-        List<string> courseIDs;
-        List<string> courseCredits;
-        List<string> terms;
-        List<string> grades;
+        int numCourses;               
+        string term;
+        string grade;
 
         SortedDictionary<string ,Student> enrolledStudents;
         
@@ -44,14 +42,14 @@ namespace CS390
         /// <summary>
         /// Used for CourseHistoryDatabase Creation
         /// </summary>
-        public Course(Student student, int numCourses, List<string> courseIDs, List<string> terms, List<string> courseCredits, List<string> grades)
+        public Course(Student student, int numCourses, string courseID, string term, string courseCredit, string grade)
         {
             this.student = student;
             this.numCourses = numCourses;
-            this.courseIDs = courseIDs;
-            this.terms = terms;
-            this.courseCredits = courseCredits;
-            this.grades = grades;
+            this.courseID = courseID;
+            this.term = term;
+            this.courseCredit = courseCredit;
+            this.grade = grade;
         }
 
         public void EnrollStudent(Student student)
@@ -83,6 +81,9 @@ namespace CS390
         {
             return numSeats;
         }
+        public int GetNumCourses() { return numCourses; }
+        public string GetCourseTerm() { return term; }
+        public string GetGrade() { return grade; }
 
         public void SetCourseID(string newCourseid)
         {
@@ -110,11 +111,7 @@ namespace CS390
             return dayBlocks;
         }
 
-        public int GetHistoryNumCourses() { return numCourses; }
-        public List<string> GetHistoryCourseIDs() { return courseIDs; }
-        public List<string> GetHistoryCourseCredits() { return courseCredits; }
-        public List<string> GetHistoryTerms() { return terms; }
-        public List<string> GetHistoryGrades() { return grades; }
+
 
     }
 

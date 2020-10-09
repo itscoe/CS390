@@ -9,7 +9,7 @@ namespace CS390
     class Student : User
     {
         SortedDictionary<string, Course> enrolledCourses = new SortedDictionary<string, Course>();
-        Course courseHistory;
+        List<Course> courseHistory = new List<Course>();
 
         public Student(string userName = "", string password = "", string firstName = "", string middleName = "", string lastName = "", string status = "")
             : base(userName, password, firstName, middleName, lastName, status) { }
@@ -47,10 +47,10 @@ namespace CS390
         public void AddCourseHistory(Course course)
         //access registrationDataBase
         {
-            courseHistory = course;
+            courseHistory.Add(course);
         }
 
-        public Course GetCourseHistory()
+        public List<Course> GetCourseHistory()
         {
             return courseHistory;
         }

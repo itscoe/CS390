@@ -112,25 +112,20 @@ namespace CS390
                         string user = historyInfo.Substring(0, 11).TrimEnd(' '); historyInfo = historyInfo.Remove(0, 11);
                         int numCourses = Convert.ToInt16(historyInfo.Substring(0, 3).TrimEnd(' ')); historyInfo = historyInfo.Remove(0, 3);
                         Console.WriteLine(numCourses);
-                        List<string> courseIDs = new List<string>();
-                        List<string> terms = new List<string>();
-                        List<string> credits = new List<string>();
-                        List<string> grades = new List<string>();
+                        string courseID;
+                        string term;
+                        string credit;
+                        string grade;
 
                         for(int i = 0; i < numCourses; i++)
                         {
-                            string courseID = historyInfo.Substring(0, 11).TrimEnd(' '); historyInfo = historyInfo.Remove(0, 11);
-                            string term = historyInfo.Substring(0, 4).TrimEnd(' '); historyInfo = historyInfo.Remove(0, 4);
-                            string credit = historyInfo.Substring(0, 5).TrimEnd(' '); historyInfo = historyInfo.Remove(0, 5);
-                            string grade = historyInfo.Substring(0, 4).TrimEnd(' '); historyInfo = historyInfo.Remove(0, 4);
+                            courseID = historyInfo.Substring(0, 11).TrimEnd(' '); historyInfo = historyInfo.Remove(0, 11);
+                            term = historyInfo.Substring(0, 4).TrimEnd(' '); historyInfo = historyInfo.Remove(0, 4);
+                            credit = historyInfo.Substring(0, 5).TrimEnd(' '); historyInfo = historyInfo.Remove(0, 5);
+                            grade = historyInfo.Substring(0, 4).TrimEnd(' '); historyInfo = historyInfo.Remove(0, 4);
 
-                            courseIDs.Add(courseID);
-                            terms.Add(term);
-                            credits.Add(credit);
-                            grades.Add(grade);
+                            CreateHistory(user, numCourses, courseID, term, credit, grade);
                         }
-
-                        CreateHistory(user, numCourses, courseIDs, terms, credits, grades);
                     }
                 break;
             }
@@ -163,7 +158,7 @@ namespace CS390
             userDatabase.Add(userName, user);
         }
 
-        static void CreateHistory(string userName, int numCourses, List<string> courseName, List<string> term, List<string> courseCredit, List<string> grade)
+        static void CreateHistory(string userName, int numCourses, string courseName, string term, string courseCredit, string grade)
         {
             Student student = (Student)GetUser(userName);
             Course course = new Course(student, numCourses, courseName, term, courseCredit, grade);

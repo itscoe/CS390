@@ -48,9 +48,9 @@ namespace CS390
                                        select new
                                        {
                                            Id = row.GetCourseID(),
-                                           Name = row.GetCourseName(),
+                                           Term = row.GetCourseTerm(),
                                            Credits = row.GetCourseCredit(),
-                                           Grade = row.GetGrades(),
+                                           Grade = row.GetGrade(),
                                        };
             dataGridView3.DataSource = student_course_history_array.ToArray();
         }
