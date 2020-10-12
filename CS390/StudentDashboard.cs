@@ -253,5 +253,10 @@ namespace CS390
             button7.Visible = true;
             button8.Visible = true;
         }
+
+        private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
