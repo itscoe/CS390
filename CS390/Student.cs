@@ -25,6 +25,7 @@ namespace CS390
         //adds courseName to enrolledCourses
         {
             enrolledCourses.Add(courseID, RegistrationDatabase.GetCourse(courseID));
+            courseHistory.Add(RegistrationDatabase.GetCourse(courseID).ConvertToCourseHistory(this));
         }
         public void DropCourse(string courseID)
         //verify if courseName is in enrolledCourses
@@ -33,17 +34,17 @@ namespace CS390
             try
             {
                 enrolledCourses.Remove(courseID);
+                foreach (Course course in courseHistory)
+                    if (course.GetCourseID().Equals(courseID))
+                        if(course.GetCourseTerm().Equals("F14"))
+                            courseHistory.Remove(course);
             }
             catch(Exception e)
             {
                 return;
             }
         }
-        void ViewSchedule()
-        //print out enrolledCourses
-        {
 
-        }
         public void AddCourseHistory(Course course)
         //access registrationDataBase
         {
