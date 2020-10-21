@@ -49,6 +49,9 @@ namespace CS390
         //access registrationDataBase
         {
             courseHistory.Add(course);
+            if (RegistrationDatabase.GetCourse(course.GetCourseID()) != null && course.GetGrade() == "N")
+                if (!enrolledCourses.ContainsKey(course.GetCourseID()))
+                    enrolledCourses.Add(course.GetCourseID(), RegistrationDatabase.GetCourse(course.GetCourseID()));
         }
 
         public List<Course> GetCourseHistory()
@@ -60,12 +63,24 @@ namespace CS390
             return enrolledCourses;
         }
 
-        public float GetCourseCredits()
+        public float GetCurrentCourseCredits()
+        {
+            float x = 0.0f;
+            foreach(KeyValuePair<string, Course> course in enrolledCourses)
+            {
+                if(course.Value.IsCreditGrade())
+                    x += Convert.ToSingle(course.Value.GetCourseCredit());
+            }
+            return x;
+        }
+
+        public float GetHistoryCourseCredits()
         {
             float x = 0.0f;
             foreach(Course course in courseHistory)
             {
-                x += Convert.ToSingle(course.GetCourseCredit());
+                if(course.IsCreditGrade())
+                    x += Convert.ToSingle(course.GetCourseCredit());
             }
             return x;
         }
@@ -73,7 +88,7 @@ namespace CS390
         public float GetGradePointAverage()
         {
             float x = 0.0f;
-            int courseCount = 0;
+            int courseCount = 0; 
             foreach(Course course in courseHistory)
             {
                 switch(course.GetGrade())

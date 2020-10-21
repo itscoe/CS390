@@ -122,7 +122,23 @@ namespace CS390
             return dayBlocks;
         }
 
-
+        public bool IsCreditGrade()
+        {
+            switch (grade)
+            {
+                case "U":
+                    return false;
+                case "W":
+                    return false;
+                case "O":
+                    return false;
+                case "I":
+                    return false;
+                case "EQ":
+                    return false;
+            }
+            return true;
+        }
 
     }
 
