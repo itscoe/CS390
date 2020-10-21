@@ -36,8 +36,19 @@ namespace CS390
                 bad_login_message.Visible = true;
             } else
             {
-                StudentDashboard form2 = new StudentDashboard();
-                form2.Show();
+                if(current_user is Student)
+                {
+                    StudentDashboard form2 = new StudentDashboard();
+                    form2.Show();
+                } else if (current_user is Faculty)
+                {
+                    ProfessorDashboard form2 = new ProfessorDashboard();
+                    form2.Show();
+                } else if (current_user is Admin)
+                {
+                    AdminDashboard form2 = new AdminDashboard();
+                    form2.Show();
+                }
                 Hide();
             }
         }
