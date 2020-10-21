@@ -61,27 +61,22 @@ namespace CS390.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CS-125-00  Comp Sci I      BObama     1.00 30  2 21202 08253 
-        ///CS-225-00  Comp Sci II     BObama     1.00 20  1 21242 
-        ///CS-355-00  Adv OOP         BObama     1.00 15  1 21282 
-        ///MTH-135-01 Calculus I      MRomney    1.00 24  1 15253 
-        ///MTH-135-02 Calculus I      MRomney    1.00 20  1 15223 
-        ///MTH-145-00 Calculus II     MRomney    1.00 112 2 12162 04302 .
+        ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static string CourseDatabase {
+        internal static byte[] CourseDatabase {
             get {
-                return ResourceManager.GetString("CourseDatabase", resourceCulture);
+                object obj = ResourceManager.GetObject("CourseDatabase", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to JBiden     2  CS-125-00  F13 1.00 B-  BUS-235-01 S14 0.50 B 
-        ///PRyan      3  CS-125-00  F13 1.00 A   CS-225-00  F14 1.00 N   CS-235-00  S15 1.00 N 
-        ///FLWright   3  CS-125-00  F13 1.00 S   CS-125-00  S14 1.00 B   MTH-135-00 S14 1.00 A .
+        ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static string CourseHistoryDatabase {
+        internal static byte[] CourseHistoryDatabase {
             get {
-                return ResourceManager.GetString("CourseHistoryDatabase", resourceCulture);
+                object obj = ResourceManager.GetObject("CourseHistoryDatabase", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
@@ -116,17 +111,12 @@ namespace CS390.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to JBiden     Delaware   Joe             Robinette       Biden           BObama    
-        ///MRomney    Mass       Willard         Mitt            Romney          faculty   
-        ///BObama     Illinois   Barack          Hussein         Obama           faculty   
-        ///PRyan      Cheese     Paul            Davis    	      Ryan            MRomney   
-        ///Voter      USA        Jane            Quincy          Public          admin     
-        ///CVN        mathsci    Calvin          Security        Van Niewaal     admin     
-        ///FLWright   Taliesin  [rest of string was truncated]&quot;;.
+        ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static string UserDatabase {
+        internal static byte[] UserDatabase {
             get {
-                return ResourceManager.GetString("UserDatabase", resourceCulture);
+                object obj = ResourceManager.GetObject("UserDatabase", resourceCulture);
+                return ((byte[])(obj));
             }
         }
     }

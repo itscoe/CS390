@@ -53,7 +53,11 @@ namespace CS390
 
                         for(int x = 1; x <= blocks; x++)
                         {
-                            int timeBlock = Convert.ToInt16(courseInfo.Substring(0,6).TrimEnd(' ')); courseInfo = courseInfo.Remove(0, 6);
+                            int timeBlock = 0;
+                            if (x < blocks)
+                            { timeBlock = Convert.ToInt16(courseInfo.Substring(0, 6).TrimEnd(' ')); courseInfo = courseInfo.Remove(0, 6); }
+                            else
+                                timeBlock = Convert.ToInt16(courseInfo.Substring(0, courseInfo.Length).TrimEnd(' '));
                             string days = "";
                             string times = "";
                             int day = timeBlock / 1000;
@@ -122,8 +126,11 @@ namespace CS390
                             courseID = historyInfo.Substring(0, 11).TrimEnd(' '); historyInfo = historyInfo.Remove(0, 11);
                             term = historyInfo.Substring(0, 4).TrimEnd(' '); historyInfo = historyInfo.Remove(0, 4);
                             credit = historyInfo.Substring(0, 5).TrimEnd(' '); historyInfo = historyInfo.Remove(0, 5);
-                            grade = historyInfo.Substring(0, 4).TrimEnd(' '); historyInfo = historyInfo.Remove(0, 4);
-
+                            if (i < numCourses - 1) {
+                                grade = historyInfo.Substring(0, 4).TrimEnd(' '); historyInfo = historyInfo.Remove(0, 4);
+                            }
+                            else
+                                grade = historyInfo.Substring(0, historyInfo.Length).TrimEnd(' ');
                             CreateHistory(user, courseID, term, credit, grade);
                         }
                     }
