@@ -17,7 +17,6 @@ namespace CS390
         List<string> timeBlocks;
 
         Student student;
-        int numCourses;               
         string term;
         string grade;
 
@@ -42,47 +41,59 @@ namespace CS390
         /// <summary>
         /// Used for CourseHistoryDatabase Creation
         /// </summary>
-        public Course(Student student, int numCourses, string courseID, string term, string courseCredit, string grade)
+        public Course(Student student, string courseID, string term, string courseCredit, string grade)
         {
             this.student = student;
-            this.numCourses = numCourses;
             this.courseID = courseID;
             this.term = term;
             this.courseCredit = courseCredit;
             this.grade = grade;
         }
-
+       
+        public Course ConvertToCourseHistory(Student student, string term = "F14", string grade = "N")
+        {
+            return new Course(student, courseID, term, courseCredit, grade);
+        }
+        
         public void EnrollStudent(Student student)
         {
             enrolledStudents.Add(student.GetUserName(), student);
+            numSeats--;
         }
         public void WithdrawStudent(Student student)
         {
             enrolledStudents.Remove(student.GetUserName());
+            numSeats++;
         }
+
 
         public string GetCourseID()
         {
             return courseID;
         }
+
         public string GetCourseName()
         {
             return courseName;
         }
+
         public Faculty GetFaculty()
         {
             return faculty;
         }
+
         public string GetCourseCredit()
         {
             return courseCredit;
         }
+
         public int GetNumSeats()
         {
             return numSeats;
         }
-        public int GetNumCourses() { return numCourses; }
+
         public string GetCourseTerm() { return term; }
+
         public string GetGrade() { return grade; }
 
         public void SetCourseID(string newCourseid)
@@ -111,7 +122,23 @@ namespace CS390
             return dayBlocks;
         }
 
-
+        public bool IsCreditGrade()
+        {
+            switch (grade)
+            {
+                case "U":
+                    return false;
+                case "W":
+                    return false;
+                case "O":
+                    return false;
+                case "I":
+                    return false;
+                case "EQ":
+                    return false;
+            }
+            return true;
+        }
 
     }
 

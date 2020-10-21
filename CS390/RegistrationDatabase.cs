@@ -124,7 +124,7 @@ namespace CS390
                             credit = historyInfo.Substring(0, 5).TrimEnd(' '); historyInfo = historyInfo.Remove(0, 5);
                             grade = historyInfo.Substring(0, 4).TrimEnd(' '); historyInfo = historyInfo.Remove(0, 4);
 
-                            CreateHistory(user, numCourses, courseID, term, credit, grade);
+                            CreateHistory(user, courseID, term, credit, grade);
                         }
                     }
                 break;
@@ -158,10 +158,10 @@ namespace CS390
             userDatabase.Add(userName, user);
         }
 
-        static void CreateHistory(string userName, int numCourses, string courseName, string term, string courseCredit, string grade)
+        static void CreateHistory(string userName, string courseName, string term, string courseCredit, string grade)
         {
             Student student = (Student)GetUser(userName);
-            Course course = new Course(student, numCourses, courseName, term, courseCredit, grade);
+            Course course = new Course(student, courseName, term, courseCredit, grade);
             student.AddCourseHistory(course);
         }
 

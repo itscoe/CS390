@@ -25,6 +25,7 @@ namespace CS390
         //adds courseName to enrolledCourses
         {
             enrolledCourses.Add(courseID, RegistrationDatabase.GetCourse(courseID));
+            courseHistory.Add(RegistrationDatabase.GetCourse(courseID).ConvertToCourseHistory(this));
         }
         public void DropCourse(string courseID)
         //verify if courseName is in enrolledCourses
@@ -33,21 +34,24 @@ namespace CS390
             try
             {
                 enrolledCourses.Remove(courseID);
+                foreach (Course course in courseHistory)
+                    if (course.GetCourseID().Equals(courseID))
+                        if(course.GetCourseTerm().Equals("F14"))
+                            courseHistory.Remove(course);
             }
             catch(Exception e)
             {
                 return;
             }
         }
-        void ViewSchedule()
-        //print out enrolledCourses
-        {
 
-        }
         public void AddCourseHistory(Course course)
         //access registrationDataBase
         {
             courseHistory.Add(course);
+            if (RegistrationDatabase.GetCourse(course.GetCourseID()) != null && course.GetGrade() == "N")
+                if (!enrolledCourses.ContainsKey(course.GetCourseID()))
+                    enrolledCourses.Add(course.GetCourseID(), RegistrationDatabase.GetCourse(course.GetCourseID()));
         }
 
         public List<Course> GetCourseHistory()
@@ -59,12 +63,24 @@ namespace CS390
             return enrolledCourses;
         }
 
-        public float GetCourseCredits()
+        public float GetCurrentCourseCredits()
+        {
+            float x = 0.0f;
+            foreach(KeyValuePair<string, Course> course in enrolledCourses)
+            {
+                if(course.Value.IsCreditGrade())
+                    x += Convert.ToSingle(course.Value.GetCourseCredit());
+            }
+            return x;
+        }
+
+        public float GetHistoryCourseCredits()
         {
             float x = 0.0f;
             foreach(Course course in courseHistory)
             {
-                x += Convert.ToSingle(course.GetCourseCredit());
+                if(course.IsCreditGrade())
+                    x += Convert.ToSingle(course.GetCourseCredit());
             }
             return x;
         }
@@ -72,7 +88,7 @@ namespace CS390
         public float GetGradePointAverage()
         {
             float x = 0.0f;
-            int courseCount = 0;
+            int courseCount = 0; 
             foreach(Course course in courseHistory)
             {
                 switch(course.GetGrade())
