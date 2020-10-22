@@ -36,6 +36,7 @@ namespace CS390
 
                         CreateUser(user, pass, first, middle, last, stat);
                     }
+                    BuildStudentAdviseeList();
                     break;
                 case DatabaseType.course:
                     while(!file.EndOfStream)
@@ -163,6 +164,18 @@ namespace CS390
             }
 
             userDatabase.Add(userName, user);
+        }
+
+        static void BuildStudentAdviseeList()
+        {
+            foreach(KeyValuePair<string, User> user in userDatabase)
+            {
+                if(!user.Value.GetStatus().Equals("admin") && !user.Value.GetStatus().Equals("faculty"))
+                {
+                    Faculty faculty = (Faculty)GetUser(user.Value.GetStatus());
+                    faculty.AddStudentAdvisee((Student)user.Value);
+                }
+            }
         }
 
         static void CreateHistory(string userName, string courseName, string term, string courseCredit, string grade)
