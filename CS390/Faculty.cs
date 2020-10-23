@@ -8,8 +8,7 @@ namespace CS390
 {
     class Faculty : User
     {
-        SortedDictionary<string, Course> enrolledCourses = new SortedDictionary<string, Course>();
-        List<Course> courseHistory = new List<Course>();
+        SortedDictionary<string, Course> coursesTaught = new SortedDictionary<string, Course>();
         List<Student> advisees = new List<Student>();
 
 
@@ -23,7 +22,7 @@ namespace CS390
         public void AddCourse(string courseID)
         //adds courseName to enrolledCourses
         {
-            enrolledCourses.Add(courseID, RegistrationDatabase.GetCourse(courseID));
+            coursesTaught.Add(courseID, RegistrationDatabase.GetCourse(courseID));
         }
         public void DropCourse(string courseID)
         //verify if courseName is in enrolledCourses
@@ -31,22 +30,12 @@ namespace CS390
         {
             try
             {
-                enrolledCourses.Remove(courseID);
+                coursesTaught.Remove(courseID);
             }
             catch (Exception e)
             {
                 return;
             }
-        }
-        public void AddCourseHistory(Course course)
-        //access registrationDataBase
-        {
-            courseHistory.Add(course);
-        }
-
-        public List<Course> GetCourseHistory()
-        {
-            return courseHistory;
         }
         public List<Student> GetAdvisees() 
         {
@@ -55,16 +44,7 @@ namespace CS390
         }
         public SortedDictionary<string, Course> GetCourses()
         {
-            return enrolledCourses;
-        }
-        public float GetCourseCredits()
-        {
-            float x = 0.0f;
-            foreach (Course course in courseHistory)
-            {
-                x += Convert.ToSingle(course.GetCourseCredit());
-            }
-            return x;
+            return coursesTaught;
         }
         
         public List<Student> GetStudentAdvisees()
@@ -83,21 +63,7 @@ namespace CS390
         }
         
     }
-
-
-    //print out enrolledCourses
-       /* public void ViewSchedule()
-
-        {
-
-        }
-
-        //access registrationDataBase
-        void SearchCourses()
-        {
-
-        }
-
+    /*
         void SubmitGrades()
         {
 
