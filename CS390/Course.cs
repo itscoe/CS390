@@ -20,7 +20,7 @@ namespace CS390
         string term;
         string grade;
 
-        SortedDictionary<string ,Student> enrolledStudents;
+        SortedDictionary<string ,Student> enrolledStudents = new SortedDictionary<string, Student>();
         
         /// <summary>
         /// Used for CourseDatabase Creation

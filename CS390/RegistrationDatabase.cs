@@ -37,7 +37,7 @@ namespace CS390
                         CreateUser(user, pass, first, middle, last, stat);
                     }
                     BuildStudentAdviseeList();
-                    break;
+                break;
                 case DatabaseType.course:
                     while(!file.EndOfStream)
                     {
@@ -106,17 +106,16 @@ namespace CS390
 
                             timeBlocks.Add(times);
                         }
-
                         CreateCourse(courseName, courseTitle, faculty, courseCredit, seatCount, dayBlocks, timeBlocks);
                     }
-                    break;
+                    AddCoursesToFaculty();
+                break;
                 case DatabaseType.courseHistory:
                     while(!file.EndOfStream)
                     {
                         string historyInfo = file.ReadLine();
                         string user = historyInfo.Substring(0, 11).TrimEnd(' '); historyInfo = historyInfo.Remove(0, 11);
                         int numCourses = Convert.ToInt16(historyInfo.Substring(0, 3).TrimEnd(' ')); historyInfo = historyInfo.Remove(0, 3);
-                        Console.WriteLine(numCourses);
                         string courseID;
                         string term;
                         string credit;
@@ -135,6 +134,7 @@ namespace CS390
                             CreateHistory(user, courseID, term, credit, grade);
                         }
                     }
+                    AddStudentsToCourses();
                 break;
             }
         }
@@ -174,6 +174,34 @@ namespace CS390
                 {
                     Faculty faculty = (Faculty)GetUser(user.Value.GetStatus());
                     faculty.AddStudentAdvisee((Student)user.Value);
+                }
+            }
+        }
+
+        static void AddCoursesToFaculty()
+        {
+            foreach(KeyValuePair<string, Course> course in courseDatabase)
+            {
+                Faculty faculty = course.Value.GetFaculty();
+                faculty.AddCourse(course.Value.GetCourseID());
+            }
+        }
+
+        static void AddStudentsToCourses()
+        {
+            foreach(KeyValuePair<string, User> user in userDatabase)
+            {
+                if(!user.Value.GetStatus().Equals("admin") && !user.Value.GetStatus().Equals("faculty"))
+                {
+                    Student student = (Student)user.Value;
+                    List<Course> courses = student.GetCourseHistory();
+                    foreach(Course course in courses)
+                    {
+                        if (course.GetGrade() != null && course.GetGrade() == "N")
+                        {
+                            GetCourse(course.GetCourseID()).EnrollStudent(student);
+                        }
+                    }
                 }
             }
         }
