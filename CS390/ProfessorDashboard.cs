@@ -32,6 +32,7 @@ namespace CS390
             label2.Parent = pictureBox1;
             label1.Location = new Point(10, label1.Location.Y);
             label2.Location = new Point(10, label2.Location.Y);
+            dataGridView3.Visible = false;
             var course_array = from row in RegistrationDatabase.GetCourses()
                                //where row.Value.GetCourseTerm() == "F14"
                                select new
@@ -59,7 +60,14 @@ namespace CS390
                                    Times = String.Join(", ", row.Value.GetTimeBlocks())
                                };
             dataGridView2.DataSource = faculty_course_array.ToArray();
-            
+            var advisees_array = from row in current_user.GetAdvisees()
+                                 select new
+                                 {
+                                     First = row.GetFirstName(),
+                                     Last = row.GetLastName()
+
+                                };
+            dataGridView3.DataSource = advisees_array.ToArray();
         }
 
         private void Form2_FormClosed(object sender, FormClosedEventArgs e)
@@ -96,6 +104,7 @@ namespace CS390
             button5.FlatAppearance.BorderColor = Color.Empty;
             dataGridView1.Visible = false;
             dataGridView2.Visible = false;
+            dataGridView3.Visible = true;
             label1.Visible = false;
             label2.Visible = false;
         }
@@ -114,13 +123,9 @@ namespace CS390
             button5.FlatAppearance.BorderColor = Color.Empty;
             dataGridView1.Visible = true;
             dataGridView2.Visible = true;
+            dataGridView3.Visible = false;
             label1.Visible = true;
             label2.Visible = true;
-        }
-
-        private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
         private void label1_Click(object sender, EventArgs e)
