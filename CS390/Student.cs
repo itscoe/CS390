@@ -79,7 +79,8 @@ namespace CS390
             float x = 0.0f;
             foreach(Course course in courseHistory)
             {
-                if(course.IsCreditGrade())
+                if (course.IsCreditGrade())
+                    Console.WriteLine(Convert.ToSingle(course.GetCourseCredit()));
                     x += Convert.ToSingle(course.GetCourseCredit());
             }
             return x;

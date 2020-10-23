@@ -54,6 +54,7 @@ namespace CS390
                                            Grade = row.GetGrade(),
                                        };
             dataGridView3.DataSource = student_course_history_array.ToArray();
+            label3.Text = $"Total Credits: {current_user.GetHistoryCourseCredits():F2} GPA: {current_user.GetGradePointAverage():F2}";
         }
 
         private void Form2_FormClosed(object sender, FormClosedEventArgs e)

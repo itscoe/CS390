@@ -20,8 +20,8 @@ namespace CS390.Resources
                                     //where row.Value.GetCourseTerm() == "F14"
                                 select new
                                 {
-                                    firstName = row.Value.GetFirstName(),
-                                    secondName = row.Value.GetLastName()
+                                    First = row.Value.GetFirstName(),
+                                    Last = row.Value.GetLastName()
                                 };
             dataGridView1.DataSource = student_array.ToArray();
         }
