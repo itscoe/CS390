@@ -89,60 +89,10 @@ namespace CS390
                             List<string> new_course_split_list = new List<string>(new_course_split);
                             string[] old_course_split = old_course_id.Split('-');
                             List<string> old_course_split_list = new List<string>(old_course_split);
-                            Console.WriteLine(new_course_split_list[0]);
-                            Console.WriteLine(old_course_split_list[0]);
-                            Console.WriteLine(new_course_split_list[1]);
-                            Console.WriteLine(old_course_split_list[1]);
                             if (new_course_split_list[0] == old_course_split_list[0] && new_course_split_list[1] == old_course_split_list[1])
                             {
                                 addCourse = false;
                                 System.Windows.Forms.MessageBox.Show("Already enrolled in different section of course");
-                            }
-                        }
-                        if (addCourse)
-                        {
-                            List<string> new_time_slots = new List<string>();
-                            string new_days_string = (string)d_row.Cells[6].Value;
-                            string[] new_days_split = new_days_string.Split(',');
-                            string new_times_string = (string)d_row.Cells[7].Value;
-                            string[] new_times_split = new_times_string.Split(',');
-                            int i = 0;
-                            foreach (string days in new_days_split) {
-                                string[] individual_days = Regex.Split(days.Trim(), string.Empty);
-                                foreach (string day in individual_days)
-                                {
-                                    string[] possible_days = { "M", "T", "W", "R", "F" };
-                                    if (Array.Exists(possible_days, element => element == day))
-                                    {
-                                        new_time_slots.Add(day + new_times_split[i].Trim());
-                                    }
-                                }
-                                i += 1;
-                            }
-
-                            List<string> old_time_slots = new List<string>();
-                            string old_days_string = (string)d_row_2.Cells[6].Value;
-                            string[] old_days_split = old_days_string.Split(',');
-                            string old_times_string = (string)d_row_2.Cells[7].Value;
-                            string[] old_times_split = old_times_string.Split(',');
-                            int j = 0;
-                            foreach (string days in old_days_split)
-                            {
-                                string[] individual_days = Regex.Split(days.Trim(), string.Empty);
-                                foreach (string day in individual_days)
-                                {
-                                    string[] possible_days = { "M", "T", "W", "R", "F" };
-                                    if (Array.Exists(possible_days, element => element == day))
-                                    {
-                                        old_time_slots.Add(day + old_times_split[j].Trim());
-                                    }
-                                }
-                                j += 1;
-                            }
-                            if (new_time_slots.Intersect(old_time_slots).Any())
-                            {
-                                addCourse = false;
-                                System.Windows.Forms.MessageBox.Show("Scheduling conflict with " + d_row_2.Cells[1].Value);
                             }
                         }
                     }
@@ -163,6 +113,7 @@ namespace CS390
                                                            Times = String.Join(", ", row.Value.GetTimeBlocks())
                                                        };
                             dataGridView2.DataSource = student_course_array.ToArray();
+                            current_user.VerifyNextSchedule();
                         }
                         catch
                         {
@@ -258,6 +209,16 @@ namespace CS390
         private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            current_user.VerifyCurrentSchedule();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            current_user.VerifyNextSchedule();
         }
     }
 }

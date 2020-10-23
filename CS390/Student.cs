@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace CS390
@@ -80,7 +81,6 @@ namespace CS390
             foreach(Course course in courseHistory)
             {
                 if (course.IsCreditGrade())
-                    Console.WriteLine(Convert.ToSingle(course.GetCourseCredit()));
                     x += Convert.ToSingle(course.GetCourseCredit());
             }
             return x;
@@ -138,6 +138,126 @@ namespace CS390
                 }
             }
             return (x / courseCount);
+        }
+
+        public void VerifyNextSchedule()
+        {
+            var course_keys = enrolledCourses.Keys;
+            for(int index1 = 0; index1 < course_keys.Count; index1++)
+            {
+                for (int index2 = index1 + 1; index2 < course_keys.Count; index2++)
+                {
+                    List<string> new_time_slots = new List<string>();
+                    string new_days_string = String.Join(", ", enrolledCourses[course_keys.ElementAt(index1)].GetDayBlocks());
+                    string[] new_days_split = new_days_string.Split(',');
+                    string new_times_string = String.Join(", ", enrolledCourses[course_keys.ElementAt(index1)].GetTimeBlocks());
+                    string[] new_times_split = new_times_string.Split(',');
+                    int i = 0;
+                    foreach (string days in new_days_split)
+                    {
+                        string[] individual_days = Regex.Split(days.Trim(), string.Empty);
+                        foreach (string day in individual_days)
+                        {
+                            string[] possible_days = { "M", "T", "W", "R", "F" };
+                            if (Array.Exists(possible_days, element => element == day))
+                            {
+                                new_time_slots.Add(day + new_times_split[i].Trim());
+                            }
+                        }
+                        i += 1;
+                    }
+
+                    List<string> old_time_slots = new List<string>();
+                    string old_days_string = String.Join(", ", enrolledCourses[course_keys.ElementAt(index2)].GetDayBlocks());
+                    Console.WriteLine(old_days_string);
+                    string[] old_days_split = old_days_string.Split(',');
+                    string old_times_string = String.Join(", ", enrolledCourses[course_keys.ElementAt(index2)].GetTimeBlocks());
+                    Console.WriteLine(old_times_string);
+                    string[] old_times_split = old_times_string.Split(',');
+                    int j = 0;
+                    foreach (string days in old_days_split)
+                    {
+                        string[] individual_days = Regex.Split(days.Trim(), string.Empty);
+                        foreach (string day in individual_days)
+                        {
+                            string[] possible_days = { "M", "T", "W", "R", "F" };
+                            if (Array.Exists(possible_days, element => element == day))
+                            {
+                                old_time_slots.Add(day + old_times_split[j].Trim());
+                            }
+                        }
+                        j += 1;
+                    }
+                    //Console.WriteLine(new_time_slots.ToString());
+                    //Console.WriteLine(old_time_slots.ToString());
+                    if (new_time_slots.Intersect(old_time_slots).Any())
+                    {
+                        Console.WriteLine("Tried To Warn");
+                        System.Windows.Forms.MessageBox.Show("Warning! Scheduling conflict: " + course_keys.ElementAt(index1) + " and " + course_keys.ElementAt(index2));
+                    }
+                }
+            }
+        }
+
+        public void VerifyCurrentSchedule()
+        {
+            for (int index1 = 0; index1 < courseHistory.Count; index1++)
+            {
+                for (int index2 = index1 + 1; index2 < courseHistory.Count; index2++)
+                {
+                    if(courseHistory.ElementAt(index1).GetCourseTerm() == "F14" && courseHistory.ElementAt(index2).GetCourseTerm() == "F14")
+                    {
+                        List<string> new_time_slots = new List<string>();
+                        string new_days_string = String.Join(", ", courseHistory.ElementAt(index1).GetDayBlocks());
+                        string[] new_days_split = new_days_string.Split(',');
+                        string new_times_string = String.Join(", ", courseHistory.ElementAt(index1).GetTimeBlocks());
+                        string[] new_times_split = new_times_string.Split(',');
+                        int i = 0;
+                        foreach (string days in new_days_split)
+                        {
+                            string[] individual_days = Regex.Split(days.Trim(), string.Empty);
+                            foreach (string day in individual_days)
+                            {
+                                string[] possible_days = { "M", "T", "W", "R", "F" };
+                                if (Array.Exists(possible_days, element => element == day))
+                                {
+                                    new_time_slots.Add(day + new_times_split[i].Trim());
+                                }
+                            }
+                            i += 1;
+                        }
+
+                        List<string> old_time_slots = new List<string>();
+                        string old_days_string = String.Join(", ", courseHistory.ElementAt(index2).GetDayBlocks());
+                        Console.WriteLine(old_days_string);
+                        string[] old_days_split = old_days_string.Split(',');
+                        string old_times_string = String.Join(", ", courseHistory.ElementAt(index2).GetTimeBlocks());
+                        Console.WriteLine(old_times_string);
+                        string[] old_times_split = old_times_string.Split(',');
+                        int j = 0;
+                        foreach (string days in old_days_split)
+                        {
+                            string[] individual_days = Regex.Split(days.Trim(), string.Empty);
+                            foreach (string day in individual_days)
+                            {
+                                string[] possible_days = { "M", "T", "W", "R", "F" };
+                                if (Array.Exists(possible_days, element => element == day))
+                                {
+                                    old_time_slots.Add(day + old_times_split[j].Trim());
+                                }
+                            }
+                            j += 1;
+                        }
+                        //Console.WriteLine(new_time_slots.ToString());
+                        //Console.WriteLine(old_time_slots.ToString());
+                        if (new_time_slots.Intersect(old_time_slots).Any())
+                        {
+                            Console.WriteLine("Tried To Warn");
+                            System.Windows.Forms.MessageBox.Show("Warning! Scheduling conflict: " + courseHistory.ElementAt(index1).GetCourseID() + " and " + courseHistory.ElementAt(index2).GetCourseID());
+                        }
+                    }
+                }
+            }
         }
     }
 }

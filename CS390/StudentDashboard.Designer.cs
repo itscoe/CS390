@@ -48,8 +48,10 @@
             this.button8 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.databaseTypeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -241,7 +243,7 @@
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Location = new System.Drawing.Point(110, 9);
+            this.tabControl1.Location = new System.Drawing.Point(111, 9);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(937, 450);
@@ -260,6 +262,15 @@
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(778, 396);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(145, 13);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "Total Credits: 5.00 GPA: 4.00";
+            // 
             // dataGridView3
             // 
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -270,14 +281,25 @@
             this.dataGridView3.TabIndex = 0;
             this.dataGridView3.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellContentClick);
             // 
-            // label3
+            // button6
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(778, 396);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(145, 13);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Total Credits: 5.00 GPA: 4.00";
+            this.button6.Location = new System.Drawing.Point(796, 422);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(130, 23);
+            this.button6.TabIndex = 8;
+            this.button6.Text = "Verify Next Schedule";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(660, 422);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(130, 23);
+            this.button9.TabIndex = 9;
+            this.button9.Text = "Verify Current Schedule";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // StudentDashboard
             // 
@@ -285,6 +307,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1056, 457);
             this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.button9);
+            this.Controls.Add(this.button6);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.dataGridView2);
@@ -334,5 +358,7 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button9;
     }
 }
