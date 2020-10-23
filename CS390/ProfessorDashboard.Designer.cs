@@ -44,6 +44,8 @@
             this.Students = new System.Windows.Forms.DataGridViewButtonColumn();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.VerifyCurrent = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.VerifyNext = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.databaseTypeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -205,10 +207,24 @@
             // dataGridView3
             // 
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.VerifyCurrent,
+            this.VerifyNext});
             this.dataGridView3.Location = new System.Drawing.Point(106, 9);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.Size = new System.Drawing.Size(941, 439);
             this.dataGridView3.TabIndex = 6;
+            this.dataGridView3.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellContentClick);
+            // 
+            // VerifyCurrent
+            // 
+            this.VerifyCurrent.HeaderText = "Verify Current";
+            this.VerifyCurrent.Name = "VerifyCurrent";
+            // 
+            // VerifyNext
+            // 
+            this.VerifyNext.HeaderText = "Verify Next";
+            this.VerifyNext.Name = "VerifyNext";
             // 
             // ProfessorDashboard
             // 
@@ -254,5 +270,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridViewButtonColumn Students;
         private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.DataGridViewButtonColumn VerifyCurrent;
+        private System.Windows.Forms.DataGridViewButtonColumn VerifyNext;
     }
 }

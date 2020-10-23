@@ -26,6 +26,7 @@ namespace CS390
         //adds courseName to enrolledCourses
         {
             enrolledCourses.Add(courseID, RegistrationDatabase.GetCourse(courseID));
+            RegistrationDatabase.GetCourse(courseID).EnrollStudent(this);
             courseHistory.Add(RegistrationDatabase.GetCourse(courseID).ConvertToCourseHistory(this));
         }
         public void DropCourse(string courseID)
@@ -35,9 +36,10 @@ namespace CS390
             try
             {
                 enrolledCourses.Remove(courseID);
+                RegistrationDatabase.GetCourse(courseID).WithdrawStudent(this);
                 foreach (Course course in courseHistory)
                     if (course.GetCourseID().Equals(courseID))
-                        if(course.GetCourseTerm().Equals("F14"))
+                        if(course.GetCourseTerm().Equals("S15"))
                             courseHistory.Remove(course);
             }
             catch(Exception e)

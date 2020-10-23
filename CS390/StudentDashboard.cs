@@ -95,6 +95,46 @@ namespace CS390
                                 System.Windows.Forms.MessageBox.Show("Already enrolled in different section of course");
                             }
                         }
+                        if (addCourse)
+                        {
+                            if((int)d_row.Cells[5].Value < 0.0)
+                            {
+                                addCourse = false;
+                                System.Windows.Forms.MessageBox.Show("No Seats Available");
+                            }
+                        }
+                    }
+                    if (addCourse)
+                    {
+                        if (Convert.ToSingle(d_row.Cells[4].Value) + current_user.GetCurrentCourseCredits() > 5.0)
+                        {
+                            addCourse = false;
+                            System.Windows.Forms.MessageBox.Show("Too many credits");
+                        }
+                    }
+                    if (addCourse)
+                    {
+                        if (Convert.ToSingle(d_row.Cells[4].Value) + current_user.GetCurrentCourseCredits() > 5.0)
+                        {
+                            addCourse = false;
+                            System.Windows.Forms.MessageBox.Show("Too many credits");
+                        }
+                    }
+                    if (addCourse)
+                    {
+                        foreach (DataGridViewRow d_row_3 in dataGridView3.Rows)
+                        {
+                            string new_course_id = (string)d_row.Cells[1].Value;
+                            string old_course_id = (string)d_row_3.Cells[0].Value;
+                            string[] new_course_split = new_course_id.Split('-');
+                            List<string> new_course_split_list = new List<string>(new_course_split);
+                            string[] old_course_split = old_course_id.Split('-');
+                            List<string> old_course_split_list = new List<string>(old_course_split);
+                            if (new_course_split_list[0] == old_course_split_list[0] && new_course_split_list[1] == old_course_split_list[1])
+                            {
+                                System.Windows.Forms.MessageBox.Show("Warning! Previously enrolled in " + new_course_id);
+                            }
+                        }
                     }
                     if (addCourse)
                     {

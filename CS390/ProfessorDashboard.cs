@@ -154,5 +154,17 @@ namespace CS390
                 form3.Show();
             }
         }
+
+        private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 0 && e.RowIndex >= 0)
+            {
+                current_user.GetAdvisees().ElementAt(e.RowIndex).VerifyCurrentSchedule();
+            }
+            if (e.ColumnIndex == 1 && e.RowIndex >= 0)
+            {
+                current_user.GetAdvisees().ElementAt(e.RowIndex).VerifyNextSchedule();
+            }
+        }
     }
 }
