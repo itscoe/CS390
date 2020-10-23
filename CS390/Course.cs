@@ -50,7 +50,7 @@ namespace CS390
             this.grade = grade;
         }
        
-        public Course ConvertToCourseHistory(Student student, string term = "F14", string grade = "N")
+        public Course ConvertToCourseHistory(Student student, string term = "S15", string grade = "N")
         {
             return new Course(student, courseID, term, courseCredit, grade);
         }
@@ -90,6 +90,11 @@ namespace CS390
         public int GetNumSeats()
         {
             return numSeats;
+        }
+
+        public SortedDictionary<string, Student> GetEnrolledStudents()
+        {
+            return enrolledStudents;
         }
 
         public string GetCourseTerm() { return term; }

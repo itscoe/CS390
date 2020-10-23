@@ -66,8 +66,21 @@ namespace CS390
             }
             return x;
         }
-       
+        
+        public List<Student> GetStudentAdvisees()
+        {
+            return advisees;
+        }
 
+        public void AddStudentAdvisee(Student student)
+        {
+            advisees.Add(student);
+        }
+
+        public void RemoveStudentAdvisee(Student student)
+        {
+            advisees.Remove(student);
+        }
         
     }
 

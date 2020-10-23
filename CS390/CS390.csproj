@@ -132,7 +132,7 @@
     <None Include="Resources\LoginScreenBackground.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\UserDatabase.txt">
+    <None Include="Resources\UserDatabase.in">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -140,7 +140,7 @@
     <Folder Include="bin\Debug\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\CourseDatabase.txt">
+    <None Include="Resources\CourseDatabase.in">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -151,7 +151,7 @@
     <None Include="Resources\searchIcon.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\CourseHistoryDatabase.txt">
+    <None Include="Resources\CourseHistoryDatabase.in">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
