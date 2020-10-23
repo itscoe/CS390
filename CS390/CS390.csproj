@@ -64,10 +64,10 @@
     <Compile Include="ProfessorDashboard.Designer.cs">
       <DependentUpon>ProfessorDashboard.cs</DependentUpon>
     </Compile>
-    <Compile Include="Resources\StudentList.cs">
+    <Compile Include="StudentList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Resources\StudentList.Designer.cs">
+    <Compile Include="StudentList.Designer.cs">
       <DependentUpon>StudentList.cs</DependentUpon>
     </Compile>
     <Compile Include="Student.cs" />
@@ -98,7 +98,7 @@
     <EmbeddedResource Include="ProfessorDashboard.resx">
       <DependentUpon>ProfessorDashboard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\StudentList.resx">
+    <EmbeddedResource Include="StudentList.resx">
       <DependentUpon>StudentList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StudentDashboard.resx">

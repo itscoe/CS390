@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CS390.Resources;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.Design;
@@ -12,8 +13,11 @@ using System.Windows.Forms;
 
 namespace CS390
 {
+
     public partial class ProfessorDashboard : Form
     {
+        internal static Course current_course;
+
         private Faculty current_user;
 
         public ProfessorDashboard()
@@ -29,7 +33,7 @@ namespace CS390
             label1.Location = new Point(10, label1.Location.Y);
             label2.Location = new Point(10, label2.Location.Y);
             var course_array = from row in RegistrationDatabase.GetCourses()
-                               where row.Value.GetCourseTerm() == "S15"
+                               //where row.Value.GetCourseTerm() == "F14"
                                select new
                                {
                                    Id = row.Value.GetCourseID(),
@@ -42,7 +46,8 @@ namespace CS390
                                };
             dataGridView1.DataSource = course_array.ToArray();
             var faculty_course_array = from row in RegistrationDatabase.GetCourses()
-                               where row.Value.GetCourseTerm() == "S15" && row.Value.GetFaculty().GetUserName() == current_user.GetUserName()
+                               //where row.Value.GetCourseTerm() == "F14" && 
+                               where row.Value.GetFaculty().GetUserName() == current_user.GetUserName()
                                select new
                                {
                                    Id = row.Value.GetCourseID(),
@@ -121,6 +126,28 @@ namespace CS390
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
+                e.RowIndex >= 0)
+            {
+                var i = 0;
+                foreach (KeyValuePair<string, Course> row in RegistrationDatabase.GetCourses())
+                {
+                    if(i == e.RowIndex)
+                    {
+                        current_course = row.Value;
+                    }
+                    i += 1;
+                }
+
+                StudentList form3 = new StudentList();
+                form3.Show();
+            }
         }
     }
 }
