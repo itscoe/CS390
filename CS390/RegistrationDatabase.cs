@@ -231,11 +231,20 @@ namespace CS390
         }
 
         /// <summary>
-        /// Helper method used to bypass verification, only used by RegistrationDatabase methods.
+        /// Returns the User Database.
+        /// </summary>
+        /// <returns>User Database</returns>
+        public static SortedDictionary<string, User> GetUserDatabase()
+        {
+            return userDatabase;
+        }
+
+        /// <summary>
+        /// Helper method used to bypass verification, only used by RegistrationDatabase methods and a few other cases.
         /// </summary>
         /// <param name="userName">Username of the User</param>
         /// <returns>User from User Database</returns>
-        static User GetUser(string userName)
+        public static User GetUser(string userName)
         {
             try
             {
@@ -247,6 +256,12 @@ namespace CS390
             }
         }
 
+        /// <summary>
+        /// Gets User after authenticating username and password.
+        /// </summary>
+        /// <param name="userName">Username of the user.</param>
+        /// <param name="password">Password of the user.</param>
+        /// <returns>Authenticated User</returns>
         public static User GetUser(string userName, string password)
         {
             if (VerifyUser(userName, password))
@@ -255,6 +270,9 @@ namespace CS390
                 return null;
         }
 
+        /// <summary>
+        /// Verifies that the user exists within User Database.
+        /// </summary>
         static bool VerifyUser(string userName, string password)
         {
             // try-catch statement verifies that the user exists inside the dictionary
