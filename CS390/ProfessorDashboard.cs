@@ -72,7 +72,10 @@ namespace CS390
 
         private void Form2_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.OpenForms["Form1"].Close();
+            if (!LogInScreen.admin_perms)
+            {
+                Application.OpenForms["Form1"].Close();
+            }
         }
 
         private void button5_Click(object sender, EventArgs e)
