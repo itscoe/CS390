@@ -13,6 +13,7 @@ namespace CS390
     public partial class LogInScreen : Form
     {
         internal static User current_user;
+        internal static Boolean admin_perms = false;
 
         public LogInScreen()
         {
@@ -46,6 +47,7 @@ namespace CS390
                     form2.Show();
                 } else if (current_user is Admin)
                 {
+                    admin_perms = true;
                     AdminDashboard form2 = new AdminDashboard();
                     form2.Show();
                 }

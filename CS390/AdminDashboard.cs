@@ -38,6 +38,18 @@ namespace CS390
                                    Times = String.Join(", ", row.Value.GetTimeBlocks())
                                };
             dataGridView1.DataSource = course_array.ToArray();
+            foreach(User user in RegistrationDatabase.GetUserDatabase().Values)
+            {
+                if (user is Student)
+                {
+                    comboBox1.Items.Add(user.GetUserName());
+                }
+                if (user is Faculty)
+                {
+                    comboBox2.Items.Add(user.GetUserName());
+                }
+            }
+
         }
 
         private void Form2_FormClosed(object sender, FormClosedEventArgs e)
@@ -57,6 +69,10 @@ namespace CS390
             button3.FlatAppearance.BorderColor = Color.Empty;
             button4.FlatAppearance.BorderColor = Color.Empty;
             button1.FlatAppearance.BorderColor = Color.Empty;
+            button6.Visible = false;
+            comboBox1.Visible = false;
+            button7.Visible = false;
+            comboBox2.Visible = false;
             Close();
         }
 
@@ -74,6 +90,10 @@ namespace CS390
             button5.FlatAppearance.BorderColor = Color.Empty;
             dataGridView1.Visible = false;
             label1.Visible = false;
+            button6.Visible = true;
+            comboBox1.Visible = true;
+            button7.Visible = true;
+            comboBox2.Visible = true;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -89,7 +109,39 @@ namespace CS390
             button4.FlatAppearance.BorderColor = Color.Empty;
             button5.FlatAppearance.BorderColor = Color.Empty;
             dataGridView1.Visible = true;
-            label1.Visible = true;
+            label1.Visible = true; 
+            button6.Visible = false;
+            comboBox1.Visible = false;
+            button7.Visible = false;
+            comboBox2.Visible = false;
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LogInScreen.current_user = RegistrationDatabase.GetUser(comboBox1.Text);
+                StudentDashboard form2 = new StudentDashboard();
+                form2.Show();
+            } catch
+            {
+                Console.WriteLine("Oops");
+            }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LogInScreen.current_user = RegistrationDatabase.GetUser(comboBox2.Text);
+                ProfessorDashboard form2 = new ProfessorDashboard();
+                form2.Show();
+            }
+            catch
+            {
+                Console.WriteLine("Oops");
+            }
         }
     }
 }
