@@ -16,7 +16,7 @@ namespace CS390
             courseHistory
         }
 
-        static SortedDictionary<string, User> userDatabase = new SortedDictionary<string, User>();
+        public static SortedDictionary<string, User> userDatabase = new SortedDictionary<string, User>();
         static SortedDictionary<string, Course> courseDatabase = new SortedDictionary<string, Course>();
 
         public static void Read(StreamReader file, DatabaseType databaseType)

@@ -59,7 +59,10 @@ namespace CS390
 
         private void Form2_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.OpenForms["Form1"].Close();
+            if (!LogInScreen.admin_perms)
+            {
+                Application.OpenForms["Form1"].Close();
+            }
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -78,7 +81,10 @@ namespace CS390
                     {
                         if(addCourse && d_row.Cells[1].Value == d_row_2.Cells[1].Value)
                         {
-                            addCourse = false;
+                            if (!LogInScreen.admin_perms)
+                            {
+                                addCourse = false;
+                            }
                             System.Windows.Forms.MessageBox.Show("Already enrolled in course");
                         }
                         if (addCourse)
@@ -91,7 +97,10 @@ namespace CS390
                             List<string> old_course_split_list = new List<string>(old_course_split);
                             if (new_course_split_list[0] == old_course_split_list[0] && new_course_split_list[1] == old_course_split_list[1])
                             {
-                                addCourse = false;
+                                if (!LogInScreen.admin_perms)
+                                {
+                                    addCourse = false;
+                                }
                                 System.Windows.Forms.MessageBox.Show("Already enrolled in different section of course");
                             }
                         }
@@ -99,24 +108,22 @@ namespace CS390
                         {
                             if((int)d_row.Cells[5].Value < 0.0)
                             {
-                                addCourse = false;
+                                if (!LogInScreen.admin_perms)
+                                {
+                                    addCourse = false;
+                                }
                                 System.Windows.Forms.MessageBox.Show("No Seats Available");
                             }
                         }
                     }
                     if (addCourse)
                     {
-                        if (Convert.ToSingle(d_row.Cells[4].Value) + current_user.GetCurrentCourseCredits() > 5.0)
+                        if (Convert.ToSingle(d_row.Cells[4].Value) + current_user.GetCurrentCourseCredits() >= 5.0)
                         {
-                            addCourse = false;
-                            System.Windows.Forms.MessageBox.Show("Too many credits");
-                        }
-                    }
-                    if (addCourse)
-                    {
-                        if (Convert.ToSingle(d_row.Cells[4].Value) + current_user.GetCurrentCourseCredits() > 5.0)
-                        {
-                            addCourse = false;
+                            if (!LogInScreen.admin_perms)
+                            {
+                                addCourse = false;
+                            }
                             System.Windows.Forms.MessageBox.Show("Too many credits");
                         }
                     }
