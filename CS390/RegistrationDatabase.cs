@@ -309,6 +309,29 @@ namespace CS390
             }
         }
 
+        public static void RemoveUser(string userName)
+        {
+            try
+            {
+                userDatabase.Remove(userName);
+            }
+            catch
+            {
+                Console.WriteLine(String.Format("User \"{0}\" Not Found!", userName));
+            }
+        }
+
+        public static void RemoveCourse(string courseID)
+        {
+            try
+            {
+                courseDatabase.Remove(courseID);
+            }
+            catch
+            {
+                Console.WriteLine(String.Format("Course \"{0}\" Not Found!", courseID));
+            }
+        }
 
         void GetTransaction()
         {
