@@ -13,8 +13,9 @@ namespace CS390
         Faculty faculty;
         string courseCredit;
         int numSeats;
-        List<string> dayBlocks;
-        List<string> timeBlocks;
+        List<string> dayBlocks = new List<string>();
+        List<string> timeBlocks = new List<string>();
+        List<int> dayTimeBlocks;
 
         Student student;
         string term;
@@ -25,17 +26,17 @@ namespace CS390
         /// <summary>
         /// Used for CourseDatabase Creation
         /// </summary>
-        public Course(string courseID, string courseName, Faculty faculty, string courseCredit, int numSeats, List<string> days, List<string> times)
+        public Course(string courseID, string courseName, Faculty faculty, string courseCredit, int numSeats, List<int> dayTime)
         {
             this.courseID = courseID;
             this.courseName = courseName;
             this.faculty = faculty;
             this.courseCredit = courseCredit;
             this.numSeats = numSeats;
-            this.dayBlocks = days;
-            this.timeBlocks = times;
+            this.dayTimeBlocks = dayTime;
 
             enrolledStudents = new SortedDictionary<string, Student>();
+            ConvertDayTimeBlocks();
         }
 
         /// <summary>
@@ -60,12 +61,12 @@ namespace CS390
             enrolledStudents.Add(student.GetUserName(), student);
             numSeats--;
         }
+
         public void WithdrawStudent(Student student)
         {
             enrolledStudents.Remove(student.GetUserName());
             numSeats++;
         }
-
 
         public string GetCourseID()
         {
@@ -105,14 +106,17 @@ namespace CS390
         {
             courseID = newCourseid;
         }
+
         public void SetCourseName(string newCourseName)
         {
             courseName = newCourseName;
         }
+
         public void SetFaculty(Faculty newFaculty)
         {
             faculty = newFaculty;
         }
+
         public void SetCourseCredit(string newCourseCredit)
         {
             courseCredit = newCourseCredit;
@@ -122,9 +126,95 @@ namespace CS390
         {
             return timeBlocks;
         }
+
         public List<string> GetDayBlocks()
         {
             return dayBlocks;
+        }
+
+        public List<int> GetDayTimeBlocks()
+        {
+            return dayTimeBlocks;
+        }
+
+        public void AddDayTimeBlock(int dayTime)
+        {
+            dayTimeBlocks.Add(dayTime);
+            ConvertDayTimeBlocks();
+        }
+
+        public void ChangeDayTimeBlock(int index, int newDayTime)
+        {
+            dayTimeBlocks[index] = newDayTime;
+            ConvertDayTimeBlocks();
+        }
+
+        public void RemoveDayTimeBlock(int dayTime)
+        {
+            dayTimeBlocks.Remove(dayTime);
+            ConvertDayTimeBlocks();
+        }
+
+        public void ConvertDayTimeBlocks()
+        {
+            dayBlocks.Clear();
+            timeBlocks.Clear();
+
+            foreach(int x in dayTimeBlocks)
+            {
+                string days = "";
+                string times = "";
+
+                int day = x / 1000;
+
+                if (day >= 16)
+                {
+                    day -= 16;
+                    days += "F";
+                }
+                if (day >= 8)
+                {
+                    day -= 8;
+                    days += "R";
+                }
+                if (day >= 4)
+                {
+                    day -= 4;
+                    days += "W";
+                }
+                if (day >= 2)
+                {
+                    day -= 2;
+                    days += "T";
+                }
+                if (day == 1)
+                {
+                    day -= 1;
+                    days += "M";
+                }
+
+                dayBlocks.Add(ReverseString(days));
+
+                float time = (((x / 10) % 100) / 2);
+
+                if (time >= 12)
+                {
+                    if (time > 12)
+                        time -= 12;
+                    int minute = (int)(((decimal)time % 1) * 10);
+                    minute = (60 / 10) * minute;
+                    times += time + ":" + minute + "0" + " PM";
+                }
+                else
+                {
+                    int minute = (int)(((decimal)time % 1) * 10);
+                    minute = (60 / 10) * minute;
+                    times += time + ":" + minute + "0" + " AM";
+
+                }
+
+                timeBlocks.Add(times);
+            }
         }
 
         public bool IsCreditGrade()
@@ -145,6 +235,11 @@ namespace CS390
             return true;
         }
 
+        static string ReverseString(string x)
+        {
+            char[] y = x.ToCharArray();
+            Array.Reverse(y);
+            return new string(y);
+        }
     }
-
 }

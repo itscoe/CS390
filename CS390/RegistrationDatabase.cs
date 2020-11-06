@@ -48,10 +48,25 @@ namespace CS390
                         string courseCredit = courseInfo.Substring(0, 5).TrimEnd(' '); courseInfo = courseInfo.Remove(0, 5);
                         int seatCount = Convert.ToInt16(courseInfo.Substring(0,4).TrimEnd(' ')); courseInfo = courseInfo.Remove(0, 4);
                         int blocks = Convert.ToInt16(courseInfo.Substring(0,2).TrimEnd(' ')); courseInfo = courseInfo.Remove(0, 2);
-                   
+
+                        List<int> dayTimeBlocks = new List<int>();
+
+                        for (int x = 1; x <= blocks; x++)
+                        {
+                            int timeBlock = 0;
+                            if (x < blocks)
+                            {
+                                timeBlock = Convert.ToInt16(courseInfo.Substring(0, 6).TrimEnd(' ')); courseInfo = courseInfo.Remove(0, 6);
+                            }
+                            else
+                                timeBlock = Convert.ToInt16(courseInfo.Substring(0, courseInfo.Length).TrimEnd(' '));
+
+                            dayTimeBlocks.Add(timeBlock);
+                        }
+                        /*
                         List<string> dayBlocks = new List<string>();
                         List<string> timeBlocks = new List<string>();
-
+                        
                         for(int x = 1; x <= blocks; x++)
                         {
                             int timeBlock = 0;
@@ -105,8 +120,10 @@ namespace CS390
                             }
 
                             timeBlocks.Add(times);
+                            
                         }
-                        CreateCourse(courseName, courseTitle, faculty, courseCredit, seatCount, dayBlocks, timeBlocks);
+                        */
+                        CreateCourse(courseName, courseTitle, faculty, courseCredit, seatCount, dayTimeBlocks);
                     }
                     AddCoursesToFaculty();
                 break;
@@ -140,10 +157,10 @@ namespace CS390
         }
 
         static void CreateCourse(string courseID, string courseName, Faculty faculty, string courseCredit,
-            int numSeats, List<string> days, List<string> times)
+            int numSeats, List<int> dayTime)
         {
             Course course;
-            course = new Course(courseID, courseName, faculty, courseCredit, numSeats, days, times);
+            course = new Course(courseID, courseName, faculty, courseCredit, numSeats, dayTime);
 
             courseDatabase.Add(courseID, course);
         }
@@ -231,11 +248,20 @@ namespace CS390
         }
 
         /// <summary>
-        /// Helper method used to bypass verification, only used by RegistrationDatabase methods.
+        /// Returns the User Database.
+        /// </summary>
+        /// <returns>User Database</returns>
+        public static SortedDictionary<string, User> GetUserDatabase()
+        {
+            return userDatabase;
+        }
+
+        /// <summary>
+        /// Helper method used to bypass verification, only used by RegistrationDatabase methods and a few other cases.
         /// </summary>
         /// <param name="userName">Username of the User</param>
         /// <returns>User from User Database</returns>
-        static User GetUser(string userName)
+        public static User GetUser(string userName)
         {
             try
             {
@@ -247,6 +273,12 @@ namespace CS390
             }
         }
 
+        /// <summary>
+        /// Gets User after authenticating username and password.
+        /// </summary>
+        /// <param name="userName">Username of the user.</param>
+        /// <param name="password">Password of the user.</param>
+        /// <returns>Authenticated User</returns>
         public static User GetUser(string userName, string password)
         {
             if (VerifyUser(userName, password))
@@ -255,6 +287,9 @@ namespace CS390
                 return null;
         }
 
+        /// <summary>
+        /// Verifies that the user exists within User Database.
+        /// </summary>
         static bool VerifyUser(string userName, string password)
         {
             // try-catch statement verifies that the user exists inside the dictionary
