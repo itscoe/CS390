@@ -48,6 +48,8 @@ namespace CS390
             }
         }
 
+        public void ChangeAdvisor(string userName) {  SetStatus(userName); }
+
         public void AddCourseHistory(Course course)
         //access registrationDataBase
         {
