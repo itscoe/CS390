@@ -170,7 +170,7 @@ namespace CS390
         {
             User user;
 
-            if (status.Equals("admin")) {
+            if (status.Equals("admin") || status.Equals("manager")) {
                 user = new Admin(userName, password, firstName, middleName, lastName, status);
             }
             else if (status.Equals("faculty")) {
