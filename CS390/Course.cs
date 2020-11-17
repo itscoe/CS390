@@ -16,11 +16,14 @@ namespace CS390
         List<string> dayBlocks = new List<string>();
         List<string> timeBlocks = new List<string>();
         List<int> dayTimeBlocks;
+        // start of prerequisite extra-credit
+        List<string> coursePrerequisites = new List<string>();
 
         Student student;
         string term;
         string grade;
 
+        // Dictionary that holds all currently enrolled students of this course
         SortedDictionary<string ,Student> enrolledStudents = new SortedDictionary<string, Student>();
         
         /// <summary>
@@ -51,23 +54,39 @@ namespace CS390
             this.grade = grade;
         }
        
+        /// <summary>
+        /// Converts a Course into a CourseHisory course.
+        /// </summary>
+        /// <param name="student">Student Object for this course to be assigned to.</param>
+        /// <param name="term">Defaults to the next term.</param>
+        /// <param name="grade">Defaults to "N"</param>
+        /// <returns>A Course History Object</returns>
         public Course ConvertToCourseHistory(Student student, string term = "S15", string grade = "N")
         {
             return new Course(student, courseID, term, courseCredit, grade);
         }
         
+        /// <summary>
+        /// Adds Student to enrolled students dictionary and removes a seat.
+        /// </summary>
+        /// <param name="student">Student to be added to enrolled students.</param>
         public void EnrollStudent(Student student)
         {
             enrolledStudents.Add(student.GetUserName(), student);
             numSeats--;
         }
 
+        /// <summary>
+        /// Removes Student from enrolled students dictionary and adds a seat.
+        /// </summary>
+        /// <param name="student">Student to be removed from enrolled students.</param>
         public void WithdrawStudent(Student student)
         {
             enrolledStudents.Remove(student.GetUserName());
             numSeats++;
         }
 
+        // Regular Get Functions
         public string GetCourseID()
         {
             return courseID;
@@ -93,15 +112,19 @@ namespace CS390
             return numSeats;
         }
 
+        public string GetCourseTerm() { return term; }
+
+        public string GetGrade() { return grade; }
+
+        /// <summary>
+        /// Returns entire enrolledStudents dictionary.
+        /// </summary>
         public SortedDictionary<string, Student> GetEnrolledStudents()
         {
             return enrolledStudents;
         }
 
-        public string GetCourseTerm() { return term; }
-
-        public string GetGrade() { return grade; }
-
+        // Regular Set Functions
         public void SetCourseID(string newCourseid)
         {
             courseID = newCourseid;
@@ -122,6 +145,7 @@ namespace CS390
             courseCredit = newCourseCredit;
         }
 
+        // Weird DayTime Block Functions
         public List<string> GetTimeBlocks()
         {
             return timeBlocks;
@@ -137,26 +161,42 @@ namespace CS390
             return dayTimeBlocks;
         }
 
+        /// <summary>
+        /// Adds a dayTimeBlock and starts conversion proess.
+        /// </summary>
+        /// <param name="dayTime">##### of a timeblock</param>
         public void AddDayTimeBlock(int dayTime)
         {
             dayTimeBlocks.Add(dayTime);
             ConvertDayTimeBlocks();
         }
 
+        /// <summary>
+        /// Adds a dayTimeBlock and starts conversion proess.
+        /// </summary>
+        /// <param name="newDayTime">##### of a timeblock</param>
         public void ChangeDayTimeBlock(int index, int newDayTime)
         {
             dayTimeBlocks[index] = newDayTime;
             ConvertDayTimeBlocks();
         }
 
+        /// <summary>
+        /// Removes a dayTimeBlock and starts conversion proess.
+        /// </summary>
+        /// <param name="dayTime">##### code of a timeblock</param>
         public void RemoveDayTimeBlock(int dayTime)
         {
             dayTimeBlocks.Remove(dayTime);
             ConvertDayTimeBlocks();
         }
 
+        /// <summary>
+        /// Used to be in RegistrationDatabase class, but was moved to Course to make changing dayTime blocks much easier.
+        /// </summary>
         public void ConvertDayTimeBlocks()
         {
+            // Removes everything from both day and timeBlock lists
             dayBlocks.Clear();
             timeBlocks.Clear();
 
@@ -165,6 +205,7 @@ namespace CS390
                 string days = "";
                 string times = "";
 
+                // first finds the days of the class
                 int day = x / 1000;
 
                 if (day >= 16)
@@ -193,10 +234,14 @@ namespace CS390
                     days += "M";
                 }
 
+                // reverses string because it was made backwards
                 dayBlocks.Add(ReverseString(days));
 
+                // honestly, just trust that this whole time making thing works.
+                // lots of casting goes on, converting floats to decimal to ints for the minutes.
                 float time = (((x / 10) % 100) / 2);
 
+                //If time is over 12, convert it out of military time and smack a PM on the end of it
                 if (time >= 12)
                 {
                     if (time > 12)
@@ -205,6 +250,7 @@ namespace CS390
                     minute = (60 / 10) * minute;
                     times += time + ":" + minute + "0" + " PM";
                 }
+                // otherwise, leave time as-is and put an AM on it
                 else
                 {
                     int minute = (int)(((decimal)time % 1) * 10);
@@ -217,6 +263,10 @@ namespace CS390
             }
         }
 
+        /// <summary>
+        /// Bool function to check if a given course counts towards credits earned.
+        /// </summary>
+        /// <returns>True if anything but U, W, O, I, or EQ</returns>
         public bool IsCreditGrade()
         {
             switch (grade)
@@ -235,6 +285,10 @@ namespace CS390
             return true;
         }
 
+
+        /// <summary>
+        /// Helper function to reverse arrays of chars. Used by ConvertDayTimeBlocks.
+        /// </summary>
         static string ReverseString(string x)
         {
             char[] y = x.ToCharArray();
