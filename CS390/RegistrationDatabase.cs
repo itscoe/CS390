@@ -197,7 +197,7 @@ namespace CS390
         {
             foreach(KeyValuePair<string, User> user in userDatabase)
             {
-                if(!user.Value.GetStatus().Equals("admin") && !user.Value.GetStatus().Equals("faculty"))
+                if(!user.Value.GetStatus().Equals("admin") && !user.Value.GetStatus().Equals("manager") && !user.Value.GetStatus().Equals("faculty"))
                 {
                     Student student = (Student)user.Value;
                     List<Course> courses = student.GetCourseHistory();
