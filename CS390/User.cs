@@ -42,10 +42,6 @@ namespace CS390
             }
         }
 
-        /// <summary>
-        /// Accesses user's transaction history with the database.
-        /// </summary>
-
         public string GetUserName() { return userName; }
         public string GetPassword() { return password; }
         public string GetFirstName() { return firstName; }
