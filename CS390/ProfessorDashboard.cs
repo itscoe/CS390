@@ -60,7 +60,7 @@ namespace CS390
                                    Times = String.Join(", ", row.Value.GetTimeBlocks())
                                };
             dataGridView2.DataSource = faculty_course_array.ToArray();
-            var advisees_array = from row in current_user.GetAdvisees()
+            var advisees_array = from row in current_user.GetStudentAdvisees()
                                  select new
                                  {
                                      First = row.GetFirstName(),
@@ -162,11 +162,11 @@ namespace CS390
         {
             if (e.ColumnIndex == 0 && e.RowIndex >= 0)
             {
-                current_user.GetAdvisees().ElementAt(e.RowIndex).VerifyCurrentSchedule();
+                current_user.GetStudentAdvisees().ElementAt(e.RowIndex).VerifyCurrentSchedule();
             }
             if (e.ColumnIndex == 1 && e.RowIndex >= 0)
             {
-                current_user.GetAdvisees().ElementAt(e.RowIndex).VerifyNextSchedule();
+                current_user.GetStudentAdvisees().ElementAt(e.RowIndex).VerifyNextSchedule();
             }
         }
     }

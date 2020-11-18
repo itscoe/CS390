@@ -124,16 +124,16 @@
   <data name="searchIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\searchIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="CourseDatabase" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CourseDatabase.in;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="CourseHistoryDatabase" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CourseHistoryDatabase.in;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="UserDatabase" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\UserDatabase.in;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="courseDB" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\courseDB.in;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Dashboard_Background" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Dashboard Background.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="historyDB" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\historyDB.in;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="userDB" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\userDB.in;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

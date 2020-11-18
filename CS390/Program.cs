@@ -16,9 +16,9 @@ namespace CS390
         [STAThread]
         static void Main()
         {
-            StreamReader userDatabase = OpenFile(BuildFilePath("UserDatabase.in"));
-            StreamReader courseDatabase = OpenFile(BuildFilePath("CourseDatabase.in"));
-            StreamReader courseHistoryDatabase = OpenFile(BuildFilePath("CourseHistoryDatabase.in"));
+            StreamReader userDatabase = OpenFile(BuildFilePath("userDB.in"));
+            StreamReader courseDatabase = OpenFile(BuildFilePath("courseDB.in"));
+            StreamReader courseHistoryDatabase = OpenFile(BuildFilePath("historyDB.in"));
 
             RegistrationDatabase.Read(userDatabase, RegistrationDatabase.DatabaseType.user);
             RegistrationDatabase.Read(courseDatabase, RegistrationDatabase.DatabaseType.course);
