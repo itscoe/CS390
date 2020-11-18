@@ -15,11 +15,6 @@ namespace CS390
             
         }
 
-        public override void ViewTransactionHistory()
-        {
-
-        }
-
         //adds courseName to enrolledCourses of the given professor
         void AddProfessorCourse(string courseName, Faculty professorName)
         {
@@ -63,14 +58,6 @@ namespace CS390
         {
 
         }
-
-        /*
-        //implement later
-        void reviewPetitions();
-        void updateLog();
-        void submitGrades();
-        void checkGraduation();
-        */
     }
 
 }
