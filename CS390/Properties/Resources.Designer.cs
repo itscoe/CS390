@@ -85,7 +85,7 @@ namespace CS390.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap Dashboard_Background {
             get {
-                object obj = ResourceManager.GetObject("Dashboard Background", resourceCulture);
+                object obj = ResourceManager.GetObject("Dashboard_Background", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
