@@ -304,11 +304,38 @@ namespace CS390
         /// <summary>
         /// Removes a user from the User Database
         /// </summary>
-        /// <param name="userName">Username of a User</param>
+        /// <param name="userName">Username of a Faculty or Student</param>
         public static void RemoveUser(string userName)
         {
             try
             {
+                if(userDatabase[userName].GetStatus().Equals("faculty"))
+                {
+                    Faculty faculty = (Faculty)userDatabase[userName];
+
+                    foreach(KeyValuePair<string, Course> course in faculty.GetCourses())
+                    {
+                        course.Value.SetFaculty((Faculty)RegistrationDatabase.GetUser("Staff"));
+                    }
+
+                    foreach(Student student in faculty.GetStudentAdvisees())
+                    {
+                        student.ChangeAdvisor("Staff");
+                    }
+                }
+                else if (userDatabase[userName].GetStatus().Equals("student"))
+                {
+                    Student student = (Student)userDatabase[userName];
+
+                    foreach(KeyValuePair<string, Course> course in student.GetCourses())
+                    {
+                        course.Value.WithdrawStudent(student);
+                        student.DropCourse(course.Value.GetCourseID());
+                    }
+
+                    Faculty faculty = (Faculty)userDatabase[student.GetStatus()];
+                    faculty.RemoveStudentAdvisee(student);
+                }
                 userDatabase.Remove(userName);
             }
             catch
@@ -325,6 +352,22 @@ namespace CS390
         {
             try
             {
+                Course course = courseDatabase[courseID];
+
+                course.GetFaculty().DropCourse(courseID);
+
+                foreach(KeyValuePair<string, Student> student in course.GetEnrolledStudents() )
+                {
+                    foreach (KeyValuePair<string, Course> courseS in student.Value.GetCourses())
+                    {
+                        if (courseS.Value.GetCourseTerm().Equals("S15"))
+                        {
+                            if (courseS.Value.GetCourseID() == courseID)
+                                student.Value.DropCourse(courseID);
+                        }
+                    }
+                }
+
                 courseDatabase.Remove(courseID);
             }
             catch

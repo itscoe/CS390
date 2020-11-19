@@ -84,7 +84,7 @@ namespace CS390
         }
 
         /// <summary>
-        /// Returns entire courseHistory dictionary.
+        /// Returns entire current course dictionary.
         /// </summary>
         public SortedDictionary<string, Course> GetCourses()
         {

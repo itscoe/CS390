@@ -41,6 +41,19 @@ namespace CS390
             studentName.DropCourse(courseName);
         }
 
+        /// <summary>
+        /// Removes course from RegistrationDatabase
+        /// </summary>
+        /// <param name="courseID">Valid Course ID of a Course</param>
+        void RemoveCourse(string courseID)
+        {
+            if(this.GetStatus().Equals("manager"))
+            {
+                RegistrationDatabase.RemoveCourse(courseID);
+            }
+        }
+
+
         //print out enrolledCourses of given professor
         void ViewStudentSchedule(Faculty professorName)
         {

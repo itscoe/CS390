@@ -24,6 +24,8 @@ namespace CS390
             RegistrationDatabase.Read(courseDatabase, RegistrationDatabase.DatabaseType.course);
             RegistrationDatabase.Read(courseHistoryDatabase, RegistrationDatabase.DatabaseType.courseHistory);
 
+            RegistrationDatabase.userDatabase.Add("Staff", new Faculty("Staff", "Staff", "Staff", "Staff", "Staff", "faculty"));
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LogInScreen());
