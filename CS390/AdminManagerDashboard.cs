@@ -25,7 +25,21 @@ namespace CS390
         private void Form2_Load(object sender, EventArgs e)
         {
             label1.Parent = pictureBox1;
+            label2.Parent = pictureBox1;
+            label3.Parent = pictureBox1;
+            label4.Parent = pictureBox1;
+            label5.Parent = pictureBox1;
+            label6.Parent = pictureBox1;
+            label7.Parent = pictureBox1;
+            label8.Parent = pictureBox1;
             label1.Location = new Point(10, label1.Location.Y);
+            label2.Location = new Point(label2.Location.X - 100, label2.Location.Y);
+            label3.Location = new Point(label3.Location.X - 100, label3.Location.Y);
+            label4.Location = new Point(label4.Location.X - 100, label4.Location.Y);
+            label5.Location = new Point(label5.Location.X - 100, label5.Location.Y);
+            label6.Location = new Point(label6.Location.X - 100, label6.Location.Y);
+            label7.Location = new Point(label7.Location.X - 100, label7.Location.Y);
+            label8.Location = new Point(label8.Location.X - 100, label8.Location.Y);
             var course_array = from row in RegistrationDatabase.GetCourses()
                                select new
                                {
@@ -126,7 +140,7 @@ namespace CS390
             label7.Visible = false;
             label8.Visible = false;
             button12.Visible = false;
-            button12.Visible = true;
+            button13.Visible = true;
         }
         private void button2_Click(object sender, EventArgs e)
         {
