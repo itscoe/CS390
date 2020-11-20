@@ -20,10 +20,6 @@ namespace CS390
         {
             InitializeComponent();
             current_user = (Admin)LogInScreen.current_user;
-        }
-
-        private void Form2_Load(object sender, EventArgs e)
-        {
             label1.Parent = pictureBox1;
             label2.Parent = pictureBox1;
             label3.Parent = pictureBox1;
@@ -32,6 +28,11 @@ namespace CS390
             label6.Parent = pictureBox1;
             label7.Parent = pictureBox1;
             label8.Parent = pictureBox1;
+            label9.Parent = pictureBox1;
+            label10.Parent = pictureBox1;
+            label11.Parent = pictureBox1;
+            label12.Parent = pictureBox1;
+            label13.Parent = pictureBox1;
             label1.Location = new Point(10, label1.Location.Y);
             label2.Location = new Point(label2.Location.X - 100, label2.Location.Y);
             label3.Location = new Point(label3.Location.X - 100, label3.Location.Y);
@@ -40,6 +41,15 @@ namespace CS390
             label6.Location = new Point(label6.Location.X - 100, label6.Location.Y);
             label7.Location = new Point(label7.Location.X - 100, label7.Location.Y);
             label8.Location = new Point(label8.Location.X - 100, label8.Location.Y);
+            label9.Location = new Point(label9.Location.X - 100, label9.Location.Y);
+            label10.Location = new Point(label10.Location.X - 100, label10.Location.Y);
+            label11.Location = new Point(label11.Location.X - 100, label11.Location.Y);
+            label12.Location = new Point(label12.Location.X - 100, label12.Location.Y);
+            label13.Location = new Point(label13.Location.X - 100, label13.Location.Y);
+        }
+
+        private void Form2_Load(object sender, EventArgs e)
+        {
             var course_array = from row in RegistrationDatabase.GetCourses()
                                select new
                                {
@@ -72,7 +82,7 @@ namespace CS390
             dataGridView1.DataSource = course_array.ToArray();
             dataGridView2.DataSource = student_array.ToArray();
             dataGridView3.DataSource = faculty_array.ToArray();
-            ComboBox comboBox3 = new ComboBox();
+            ComboBox comboBox9 = new ComboBox();
             foreach (User user in RegistrationDatabase.GetUserDatabase().Values)
             {
                 if (user is Student)
@@ -81,17 +91,18 @@ namespace CS390
                 }
                 if (user is Faculty)
                 {
-                    comboBox3.Items.Add(user.GetUserName());
+                    comboBox9.Items.Add(user.GetUserName());
+                    comboBox8.Items.Add(user.GetUserName());
                     comboBox2.Items.Add(user.GetUserName());
                 }
             }
-            ((DataGridViewComboBoxColumn)dataGridView2.Columns["Advisor"]).DataSource = comboBox3.Items;
+            ((DataGridViewComboBoxColumn)dataGridView2.Columns["Advisor"]).DataSource = comboBox9.Items;
             foreach (DataGridViewRow d_row in dataGridView2.Rows)
             {
                 d_row.Cells[1].Value = RegistrationDatabase.GetUser((string)d_row.Cells[4].Value).GetStatus();
             }
-            ((DataGridViewComboBoxColumn)dataGridView1.Columns["ChangeProfessor"]).DataSource = comboBox3.Items;
-            foreach (DataGridViewRow d_row in dataGridView2.Rows)
+            ((DataGridViewComboBoxColumn)dataGridView1.Columns["ChangeProfessor"]).DataSource = comboBox9.Items;
+            foreach (DataGridViewRow d_row in dataGridView1.Rows)
             {
                 d_row.Cells[1].Value =(string)d_row.Cells[4].Value;
             }
@@ -141,6 +152,28 @@ namespace CS390
             label8.Visible = false;
             button12.Visible = false;
             button13.Visible = true;
+            checkedListBox1.Visible = true;
+            checkedListBox2.Visible = true;
+            checkedListBox3.Visible = true;
+            checkedListBox4.Visible = true;
+            checkedListBox5.Visible = true;
+            comboBox3.Visible = true;
+            comboBox4.Visible = true;
+            comboBox5.Visible = true;
+            comboBox6.Visible = true;
+            comboBox7.Visible = true;
+            label9.Visible = true;
+            label10.Visible = true;
+            label11.Visible = true;
+            label12.Visible = true;
+            label13.Visible = true;
+            textBox7.Visible = true;
+            textBox8.Visible = true;
+            textBox9.Visible = true;
+            textBox10.Visible = true;
+            comboBox8.Visible = true;
+            button15.Visible = true;
+            button14.Visible = true;
         }
         private void button2_Click(object sender, EventArgs e)
         {
@@ -181,6 +214,28 @@ namespace CS390
             label8.Visible = true;
             button12.Visible = true;
             button13.Visible = false;
+            checkedListBox1.Visible = false;
+            checkedListBox2.Visible = false;
+            checkedListBox3.Visible = false;
+            checkedListBox4.Visible = false;
+            checkedListBox5.Visible = false;
+            comboBox3.Visible = false;
+            comboBox4.Visible = false;
+            comboBox5.Visible = false;
+            comboBox6.Visible = false;
+            comboBox7.Visible = false;
+            label9.Visible = false;
+            label10.Visible = false;
+            label11.Visible = false;
+            label12.Visible = false;
+            label13.Visible = false;
+            textBox7.Visible = false;
+            textBox8.Visible = false;
+            textBox9.Visible = false;
+            textBox10.Visible = false;
+            comboBox8.Visible = false;
+            button15.Visible = false;
+            button14.Visible = false;
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -222,6 +277,28 @@ namespace CS390
             label8.Visible = false;
             button12.Visible = false;
             button13.Visible = false;
+            checkedListBox1.Visible = false;
+            checkedListBox2.Visible = false;
+            checkedListBox3.Visible = false;
+            checkedListBox4.Visible = false;
+            checkedListBox5.Visible = false;
+            comboBox3.Visible = false;
+            comboBox4.Visible = false;
+            comboBox5.Visible = false;
+            comboBox6.Visible = false;
+            comboBox7.Visible = false;
+            label9.Visible = false;
+            label10.Visible = false;
+            label11.Visible = false;
+            label12.Visible = false;
+            label13.Visible = false;
+            textBox7.Visible = false;
+            textBox8.Visible = false;
+            textBox9.Visible = false;
+            textBox10.Visible = false;
+            comboBox8.Visible = false;
+            button15.Visible = false;
+            button14.Visible = false;
         }
         private void button4_Click(object sender, EventArgs e)
         {
@@ -262,6 +339,28 @@ namespace CS390
             label8.Visible = false;
             button12.Visible = false;
             button13.Visible = false;
+            checkedListBox1.Visible = false;
+            checkedListBox2.Visible = false;
+            checkedListBox3.Visible = false;
+            checkedListBox4.Visible = false;
+            checkedListBox5.Visible = false;
+            comboBox3.Visible = false;
+            comboBox4.Visible = false;
+            comboBox5.Visible = false;
+            comboBox6.Visible = false;
+            comboBox7.Visible = false;
+            label9.Visible = false;
+            label10.Visible = false;
+            label11.Visible = false;
+            label12.Visible = false;
+            label13.Visible = false;
+            textBox7.Visible = false;
+            textBox8.Visible = false;
+            textBox9.Visible = false;
+            textBox10.Visible = false;
+            comboBox8.Visible = false;
+            button15.Visible = false;
+            button14.Visible = false;
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -301,6 +400,28 @@ namespace CS390
             label8.Visible = false;
             button12.Visible = false;
             button13.Visible = false;
+            checkedListBox1.Visible = false;
+            checkedListBox2.Visible = false;
+            checkedListBox3.Visible = false;
+            checkedListBox4.Visible = false;
+            checkedListBox5.Visible = false;
+            comboBox3.Visible = false;
+            comboBox4.Visible = false;
+            comboBox5.Visible = false;
+            comboBox6.Visible = false;
+            comboBox7.Visible = false;
+            label9.Visible = false;
+            label10.Visible = false;
+            label11.Visible = false;
+            label12.Visible = false;
+            label13.Visible = false;
+            textBox7.Visible = false;
+            textBox8.Visible = false;
+            textBox9.Visible = false;
+            textBox10.Visible = false;
+            comboBox8.Visible = false;
+            button15.Visible = false;
+            button14.Visible = false;
             Close();
         }
 
@@ -438,6 +559,210 @@ namespace CS390
                     RegistrationDatabase.GetCourse((string)d_row.Cells[2].Value).SetFaculty((Faculty)RegistrationDatabase.GetUser((string)cb.Value));
                 }
             }
+            Form2_Load(sender, e);
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            List<string> dayBlocks = new List<string>();
+            List<string> timeBlocks = new List<string>();
+            Console.WriteLine(checkedListBox1.CheckedItems.Count);
+            Console.WriteLine(comboBox7.SelectedValue);
+            if (checkedListBox1.CheckedItems.Count > 0 && comboBox7.SelectedIndex != -1)
+            {
+                Console.WriteLine("Here Here");
+                string days = "";
+                foreach (object day in checkedListBox1.CheckedItems)
+                {
+                    days = days + (string)day;
+                }
+                dayBlocks.Add(days);
+                timeBlocks.Add((string)comboBox7.SelectedItem);
+                foreach (int i in checkedListBox1.CheckedIndices)
+                {
+                    checkedListBox1.SetItemCheckState(i, CheckState.Unchecked);
+                }
+                comboBox7.SelectedIndex = -1;
+            }
+            if ((checkedListBox2.CheckedItems).Count > 0 && comboBox6.SelectedIndex != -1)
+            {
+                string days = "";
+                foreach (object day in checkedListBox2.CheckedItems)
+                {
+                    days = days + (string)day;
+                }
+                dayBlocks.Add(days);
+                timeBlocks.Add((string)comboBox6.SelectedItem);
+                foreach (int i in checkedListBox2.CheckedIndices)
+                {
+                    checkedListBox2.SetItemCheckState(i, CheckState.Unchecked);
+                }
+                comboBox6.SelectedIndex = -1;
+            }
+            if ((checkedListBox3.CheckedItems).Count > 0 && comboBox3.SelectedIndex != -1)
+            {
+                string days = "";
+                foreach (object day in checkedListBox3.CheckedItems)
+                {
+                    days = days + (string)day;
+                }
+                dayBlocks.Add(days);
+                timeBlocks.Add((string)comboBox3.SelectedItem);
+                foreach (int i in checkedListBox3.CheckedIndices)
+                {
+                    checkedListBox3.SetItemCheckState(i, CheckState.Unchecked);
+                }
+                comboBox3.SelectedIndex = -1;
+            }
+            if ((checkedListBox4.CheckedItems).Count > 0 && comboBox4.SelectedIndex != -1)
+            {
+                string days = "";
+                foreach (object day in checkedListBox4.CheckedItems)
+                {
+                    days = days + (string)day;
+                }
+                dayBlocks.Add(days);
+                timeBlocks.Add((string)comboBox4.SelectedItem);
+                foreach (int i in checkedListBox4.CheckedIndices)
+                {
+                    checkedListBox4.SetItemCheckState(i, CheckState.Unchecked);
+                }
+                comboBox4.SelectedIndex = -1;
+            }
+            if ((checkedListBox5.CheckedItems).Count > 0 && comboBox5.SelectedIndex != -1)
+            {
+                string days = "";
+                foreach (object day in checkedListBox5.CheckedItems)
+                {
+                    days = days + (string)day;
+                }
+                dayBlocks.Add(days);
+                timeBlocks.Add((string)comboBox5.SelectedItem);
+                foreach (int i in checkedListBox5.CheckedIndices)
+                {
+                    checkedListBox5.SetItemCheckState(i, CheckState.Unchecked);
+                }
+                comboBox5.SelectedIndex = -1;
+            }
+            Console.WriteLine("Here");
+            if (dayBlocks.Count > 0)
+            {
+                Console.WriteLine("And Here");
+                foreach (DataGridViewRow d_row in dataGridView1.Rows)
+                {
+                    object ischecked = d_row.Cells[0].Value;
+
+                    if (ischecked == null)
+                    {
+                    }
+                    else
+                    {
+                        Console.WriteLine("And And Here");
+                        try
+                        {
+                            RegistrationDatabase.GetCourse((string)d_row.Cells[2].Value).SetDayBlocks(dayBlocks);
+                            RegistrationDatabase.GetCourse((string)d_row.Cells[2].Value).SetTimeBlocks(timeBlocks);
+                        }
+                        catch
+                        {
+                            System.Windows.Forms.MessageBox.Show("Error in changing course time");
+                        }
+                    }
+                }
+                Form2_Load(sender, e);
+            }
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            List<string> dayBlocks = new List<string>();
+            List<string> timeBlocks = new List<string>();
+            Console.WriteLine(checkedListBox1.CheckedItems.Count);
+            Console.WriteLine(comboBox7.SelectedValue);
+            if (checkedListBox1.CheckedItems.Count > 0 && comboBox7.SelectedIndex != -1)
+            {
+                Console.WriteLine("Here Here");
+                string days = "";
+                foreach (object day in checkedListBox1.CheckedItems)
+                {
+                    days = days + (string)day;
+                }
+                dayBlocks.Add(days);
+                timeBlocks.Add((string)comboBox7.SelectedItem);
+                foreach (int i in checkedListBox1.CheckedIndices)
+                {
+                    checkedListBox1.SetItemCheckState(i, CheckState.Unchecked);
+                }
+                comboBox7.SelectedIndex = -1;
+            }
+            if ((checkedListBox2.CheckedItems).Count > 0 && comboBox6.SelectedIndex != -1)
+            {
+                string days = "";
+                foreach (object day in checkedListBox2.CheckedItems)
+                {
+                    days = days + (string)day;
+                }
+                dayBlocks.Add(days);
+                timeBlocks.Add((string)comboBox6.SelectedItem);
+                foreach (int i in checkedListBox2.CheckedIndices)
+                {
+                    checkedListBox2.SetItemCheckState(i, CheckState.Unchecked);
+                }
+                comboBox6.SelectedIndex = -1;
+            }
+            if ((checkedListBox3.CheckedItems).Count > 0 && comboBox3.SelectedIndex != -1)
+            {
+                string days = "";
+                foreach (object day in checkedListBox3.CheckedItems)
+                {
+                    days = days + (string)day;
+                }
+                dayBlocks.Add(days);
+                timeBlocks.Add((string)comboBox3.SelectedItem);
+                foreach (int i in checkedListBox3.CheckedIndices)
+                {
+                    checkedListBox3.SetItemCheckState(i, CheckState.Unchecked);
+                }
+                comboBox3.SelectedIndex = -1;
+            }
+            if ((checkedListBox4.CheckedItems).Count > 0 && comboBox4.SelectedIndex != -1)
+            {
+                string days = "";
+                foreach (object day in checkedListBox4.CheckedItems)
+                {
+                    days = days + (string)day;
+                }
+                dayBlocks.Add(days);
+                timeBlocks.Add((string)comboBox4.SelectedItem);
+                foreach (int i in checkedListBox4.CheckedIndices)
+                {
+                    checkedListBox4.SetItemCheckState(i, CheckState.Unchecked);
+                }
+                comboBox4.SelectedIndex = -1;
+            }
+            if ((checkedListBox5.CheckedItems).Count > 0 && comboBox5.SelectedIndex != -1)
+            {
+                string days = "";
+                foreach (object day in checkedListBox5.CheckedItems)
+                {
+                    days = days + (string)day;
+                }
+                dayBlocks.Add(days);
+                timeBlocks.Add((string)comboBox5.SelectedItem);
+                foreach (int i in checkedListBox5.CheckedIndices)
+                {
+                    checkedListBox5.SetItemCheckState(i, CheckState.Unchecked);
+                }
+                comboBox5.SelectedIndex = -1;
+            }
+            RegistrationDatabase.CreateCourse(new Course(textBox10.Text, textBox9.Text, 
+                (Faculty)RegistrationDatabase.GetUser((string)comboBox8.SelectedItem), textBox8.Text, Int32.Parse(textBox7.Text), dayBlocks, timeBlocks), textBox10.Text);
+            textBox7.Text = "";
+            textBox8.Text = "";
+            textBox9.Text = "";
+            textBox10.Text = "";
+            comboBox8.SelectedIndex = -1;
+
             Form2_Load(sender, e);
         }
     }

@@ -131,6 +131,11 @@ namespace CS390
             courseDatabase.Add(courseID, course);
         }
 
+        public static void CreateCourse(Course course, string courseID)
+        {
+            courseDatabase.Add(courseID, course);
+        }
+
         /// <summary>
         /// Helper function for Read, creates a user object and adds it to the user database.
         /// </summary>

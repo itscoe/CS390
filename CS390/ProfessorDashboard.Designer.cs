@@ -46,12 +46,14 @@
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.VerifyCurrent = new System.Windows.Forms.DataGridViewButtonColumn();
             this.VerifyNext = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.dataGridView4 = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.databaseTypeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -212,7 +214,7 @@
             this.VerifyNext});
             this.dataGridView3.Location = new System.Drawing.Point(106, 9);
             this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.Size = new System.Drawing.Size(941, 439);
+            this.dataGridView3.Size = new System.Drawing.Size(941, 233);
             this.dataGridView3.TabIndex = 6;
             this.dataGridView3.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellContentClick);
             // 
@@ -226,11 +228,21 @@
             this.VerifyNext.HeaderText = "Verify Next";
             this.VerifyNext.Name = "VerifyNext";
             // 
+            // dataGridView4
+            // 
+            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView4.Location = new System.Drawing.Point(109, 277);
+            this.dataGridView4.Name = "dataGridView4";
+            this.dataGridView4.Size = new System.Drawing.Size(938, 139);
+            this.dataGridView4.TabIndex = 7;
+            this.dataGridView4.Visible = false;
+            // 
             // ProfessorDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1052, 450);
+            this.Controls.Add(this.dataGridView4);
             this.Controls.Add(this.dataGridView3);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.label2);
@@ -249,6 +261,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -272,5 +285,6 @@
         private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.DataGridViewButtonColumn VerifyCurrent;
         private System.Windows.Forms.DataGridViewButtonColumn VerifyNext;
+        private System.Windows.Forms.DataGridView dataGridView4;
     }
 }

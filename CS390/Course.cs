@@ -42,6 +42,20 @@ namespace CS390
             ConvertDayTimeBlocks();
         }
 
+        public Course(string courseID, string courseName, Faculty faculty, string courseCredit, int numSeats, List<string> dayBlocks, List<string> timeBlocks)
+        {
+            this.courseID = courseID;
+            this.courseName = courseName;
+            this.faculty = faculty;
+            this.courseCredit = courseCredit;
+            this.numSeats = numSeats;
+            this.dayBlocks = dayBlocks;
+            this.timeBlocks = timeBlocks;
+            this.dayTimeBlocks = new List<int>();
+
+            enrolledStudents = new SortedDictionary<string, Student>();
+        }
+
         /// <summary>
         /// Used for CourseHistoryDatabase Creation
         /// </summary>
@@ -138,6 +152,16 @@ namespace CS390
         public void SetFaculty(Faculty newFaculty)
         {
             faculty = newFaculty;
+        }
+
+        public void SetDayBlocks(List<string> newDayBlocks)
+        {
+            dayBlocks = newDayBlocks;
+        }
+
+        public void SetTimeBlocks(List<string> newTimeBlocks)
+        {
+            timeBlocks = newTimeBlocks;
         }
 
         public void SetCourseCredit(string newCourseCredit)
