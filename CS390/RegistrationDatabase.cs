@@ -335,10 +335,9 @@ namespace CS390
                         student.DropCourse(course.Value.GetCourseID());
                     }
 
-                    Faculty faculty = (Faculty)userDatabase[student.GetStatus()];         
-                    userDatabase.Remove(userName);
+                    Faculty faculty = (Faculty)userDatabase[student.GetStatus()];
                     faculty.RemoveStudentAdvisee((Student)RegistrationDatabase.GetUser("PRyan"));
-                    //student.ChangeAdvisor("Staff");
+                    userDatabase.Remove(userName);
                 }
 
             }

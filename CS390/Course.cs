@@ -240,6 +240,7 @@ namespace CS390
                 // honestly, just trust that this whole time making thing works.
                 // lots of casting goes on, converting floats to decimal to ints for the minutes.
                 float time = (((x / 10) % 100) / 2);
+                int length = x % 10;
 
                 //If time is over 12, convert it out of military time and smack a PM on the end of it
                 if (time >= 12)
@@ -247,16 +248,76 @@ namespace CS390
                     if (time > 12)
                         time -= 12;
                     int minute = (int)(((decimal)time % 1) * 10);
-                    minute = (60 / 10) * minute;
-                    times += time + ":" + minute + "0" + " PM";
+                    //minute = (60 / 10) * minute;
+                    times += time + ":" + minute + "0 PM - ";
+                    if (length % 2 == 1)
+                    {
+                        length = (length - 1) / 2;
+                        minute += 30;
+                        if (minute > 60)
+                        {
+                            minute -= 60;
+                            length += 1;
+                        }
+                        int lTime = (int)time + length;
+                        if (lTime > 12)
+                        {
+                            lTime -= 12;
+                            times += lTime + ":" + minute + " PM";
+                        }
+                        else
+                            times += (time + length) + ":" + minute + " PM";
+                    }
+                    else
+                    {
+                        int lTime = (int)time + length;
+                        if (lTime > 12)
+                        {
+                            lTime -= 12;
+                            times += lTime + ":" + minute + "0 PM";
+                        }
+                        else
+                            times += (time + length) + ":" + minute + "0 PM";
+                    }
                 }
                 // otherwise, leave time as-is and put an AM on it
                 else
                 {
                     int minute = (int)(((decimal)time % 1) * 10);
-                    minute = (60 / 10) * minute;
-                    times += time + ":" + minute + "0" + " AM";
+                    //minute = (60 / 10) * minute;
+                    times += time + ":" + minute + "0 AM - ";
+                    if (length % 2 == 1)
+                    {
+                        length = (length - 1) / 2;
+                        minute += 30;
+                        if (minute > 60)
+                        {
+                            minute -= 60;
+                            length += 1;
+                        }
 
+                        int lTime = (int)time + length;
+                        if (lTime >= 12)
+                        {
+                            if(lTime > 12)
+                                lTime -= 12;
+                            times += lTime + ":" + minute + " PM";
+                        }
+                        else
+                            times += (time + length) + ":" + minute + " AM";
+                    }
+                    else
+                    {
+                        int lTime = (int)time + length;
+                        if (lTime >= 12)
+                        {
+                            if (lTime > 12)
+                                lTime -= 12;
+                            times += lTime + ":" + minute + "0 PM";
+                        }
+                        else
+                            times += (time + length) + ":" + minute + "0 AM";
+                    }
                 }
 
                 timeBlocks.Add(times);
