@@ -68,6 +68,26 @@ namespace CS390
 
                                 };
             dataGridView3.DataSource = advisees_array.ToArray();
+            try
+            {
+                var student_course_array = from row in current_user.GetStudentAdvisees()[0].GetCourses()
+                                           select new
+                                           {
+                                               Id = row.Value.GetCourseID(),
+                                               Name = row.Value.GetCourseName(),
+                                               Faculty = row.Value.GetFaculty().GetUserName(),
+                                               Credits = row.Value.GetCourseCredit(),
+                                               Seats = row.Value.GetNumSeats(),
+                                               Dates = String.Join(", ", row.Value.GetDayBlocks()),
+                                               Times = String.Join(", ", row.Value.GetTimeBlocks())
+                                           };
+                dataGridView4.DataSource = student_course_array.ToArray();
+            }
+            catch
+            {
+
+            }
+            
         }
 
         private void Form2_FormClosed(object sender, FormClosedEventArgs e)
@@ -108,6 +128,7 @@ namespace CS390
             dataGridView1.Visible = false;
             dataGridView2.Visible = false;
             dataGridView3.Visible = true;
+            dataGridView4.Visible = true;
             label1.Visible = false;
             label2.Visible = false;
         }
@@ -127,6 +148,7 @@ namespace CS390
             dataGridView1.Visible = true;
             dataGridView2.Visible = true;
             dataGridView3.Visible = false;
+            dataGridView4.Visible = false;
             label1.Visible = true;
             label2.Visible = true;
         }
