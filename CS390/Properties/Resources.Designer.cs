@@ -63,19 +63,9 @@ namespace CS390.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] CourseDatabase {
+        internal static byte[] courseDB {
             get {
-                object obj = ResourceManager.GetObject("CourseDatabase", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] CourseHistoryDatabase {
-            get {
-                object obj = ResourceManager.GetObject("CourseHistoryDatabase", resourceCulture);
+                object obj = ResourceManager.GetObject("courseDB", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -85,8 +75,18 @@ namespace CS390.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap Dashboard_Background {
             get {
-                object obj = ResourceManager.GetObject("Dashboard Background", resourceCulture);
+                object obj = ResourceManager.GetObject("Dashboard_Background", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] historyDB {
+            get {
+                object obj = ResourceManager.GetObject("historyDB", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
@@ -113,9 +113,9 @@ namespace CS390.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] UserDatabase {
+        internal static byte[] userDB {
             get {
-                object obj = ResourceManager.GetObject("UserDatabase", resourceCulture);
+                object obj = ResourceManager.GetObject("userDB", resourceCulture);
                 return ((byte[])(obj));
             }
         }

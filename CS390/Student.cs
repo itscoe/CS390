@@ -7,36 +7,45 @@ using System.Threading.Tasks;
 
 namespace CS390
 {
+    // A child class of User
     class Student : User
     {
+        // Sorted dictionary to store courses that a given student is enrolled in
         SortedDictionary<string, Course> enrolledCourses = new SortedDictionary<string, Course>();
         List<Course> courseHistory = new List<Course>();
 
+        /// <summary>
+        /// All of the variables default to blank strings and then get passed to the base User class.
+        /// </summary>
         public Student(string userName = "", string password = "", string firstName = "", string middleName = "", string lastName = "", string status = "")
             : base(userName, password, firstName, middleName, lastName, status) { }
  
-        /// <summary>
-        /// Accesses user's transaction history with the database.
-        /// </summary>
-        public override void ViewTransactionHistory()
-        {
 
-        }
+        /// <summary>
+        /// Adds a course to both enrolled courses and course history.
+        /// </summary>
+        /// <param name="courseID">Valid Course ID of a Course</param>
         public void AddCourse(string courseID)
-        //adds courseName to enrolledCourses
         {
             enrolledCourses.Add(courseID, RegistrationDatabase.GetCourse(courseID));
             RegistrationDatabase.GetCourse(courseID).EnrollStudent(this);
             courseHistory.Add(RegistrationDatabase.GetCourse(courseID).ConvertToCourseHistory(this));
         }
+
+        /// <summary>
+        /// Drops a course from both enrolled courses and course history.
+        /// </summary>
+        /// <param name="courseID">Valid Course ID of a Course</param>
         public void DropCourse(string courseID)
-        //verify if courseName is in enrolledCourses
-        //remove courseName from enrolledCourses
         {
+            // try-catch to ensure dictionary contains courseID
             try
             {
                 enrolledCourses.Remove(courseID);
+                // I love the "this" keyword if you couldn't tell
                 RegistrationDatabase.GetCourse(courseID).WithdrawStudent(this);
+
+                // this foreach loop is to make sure that we are removing courses from next term and not this term.
                 foreach (Course course in courseHistory)
                     if (course.GetCourseID().Equals(courseID))
                         if(course.GetCourseTerm().Equals("S15"))
@@ -48,8 +57,17 @@ namespace CS390
             }
         }
 
+        /// <summary>
+        /// Changes status of student to new Username.
+        /// </summary>
+        /// <param name="userName">Username of a Faculty member.</param>
+        public void ChangeAdvisor(string userName) {  SetStatus(userName); }
+
+        /// <summary>
+        /// Adds a course directly into course history.
+        /// </summary>
+        /// <param name="course">Course Object</param>
         public void AddCourseHistory(Course course)
-        //access registrationDataBase
         {
             courseHistory.Add(course);
             if (RegistrationDatabase.GetCourse(course.GetCourseID()) != null && course.GetGrade() == "N")
@@ -57,18 +75,29 @@ namespace CS390
                     enrolledCourses.Add(course.GetCourseID(), RegistrationDatabase.GetCourse(course.GetCourseID()));
         }
 
+        /// <summary>
+        /// Returns entire courseHistory list.
+        /// </summary>
         public List<Course> GetCourseHistory()
         {
             return courseHistory;
         }
+
+        /// <summary>
+        /// Returns entire current course dictionary.
+        /// </summary>
         public SortedDictionary<string, Course> GetCourses()
         {
             return enrolledCourses;
         }
 
+        /// <summary>
+        /// Gets current amount of credits obtained by a student.
+        /// </summary>
         public float GetCurrentCourseCredits()
         {
             float x = 0.0f;
+            // parses through all kvps in course history and then checks if it has a valid grade to be considered a course credit grade.
             foreach(KeyValuePair<string, Course> course in enrolledCourses)
             {
                 if(course.Value.IsCreditGrade())
@@ -77,6 +106,9 @@ namespace CS390
             return x;
         }
 
+        /// <summary>
+        /// Gets amount of credits obtained in the history of the student.
+        /// </summary>
         public float GetHistoryCourseCredits()
         {
             float x = 0.0f;
@@ -88,10 +120,14 @@ namespace CS390
             return x;
         }
 
+        /// <summary>
+        /// Gets grade point average of a given student.
+        /// </summary>
         public float GetGradePointAverage()
         {
             float x = 0.0f;
             int courseCount = 0; 
+            // uses a foreach loop and switch statement to determine a GPA
             foreach(Course course in courseHistory)
             {
                 switch(course.GetGrade())
@@ -142,6 +178,9 @@ namespace CS390
             return (x / courseCount);
         }
 
+        /// <summary>
+        /// Verifies validity of next semester's schedule.
+        /// </summary>
         public void VerifyNextSchedule()
         {
             var course_keys = enrolledCourses.Keys;
@@ -201,6 +240,9 @@ namespace CS390
             }
         }
 
+        /// <summary>
+        /// Verifies validity of this semester's schedule.
+        /// </summary>
         public void VerifyCurrentSchedule()
         {
             for (int index1 = 0; index1 < courseHistory.Count; index1++)
@@ -263,7 +305,3 @@ namespace CS390
         }
     }
 }
-
-//implement later
-// void Petition;
-// void checkGraduation;

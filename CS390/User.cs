@@ -27,8 +27,6 @@ namespace CS390
             this.status = status;
         }
 
-        SortedDictionary<Transaction, int> userTransactions;
-
         /// <summary>Accesses database with string userName and string password. </summary>
         /// <param name="userName">The user's username.</param>
         /// <param name="password">The user's password.</param>
@@ -43,16 +41,6 @@ namespace CS390
                 throw new ArgumentNullException("Invalid Username/Password.");
             }
         }
-        // Check log in information against RegistrationDatabase
-        // (Student) if successful student login, redirect form to student dash
-        // (Faculty) if successful faculty login, redirect form to faculty dash
-        // (Admin) if successful admin login, redirect form to admin dash
-
-        /// <summary>
-        /// Accesses user's transaction history with the database.
-        /// </summary>
-        abstract public void ViewTransactionHistory();
-        // Prints out list of transaction data.
 
         public string GetUserName() { return userName; }
         public string GetPassword() { return password; }
