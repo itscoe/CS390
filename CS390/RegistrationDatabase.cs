@@ -327,6 +327,8 @@ namespace CS390
                     {
                         student.ChangeAdvisor("Staff");
                     }
+
+                    userDatabase.Remove(userName);
                 }
                 else // if (userDatabase[userName].GetStatus().Equals("student"))
                 {
@@ -338,10 +340,12 @@ namespace CS390
                         student.DropCourse(course.Value.GetCourseID());
                     }
 
-                    Faculty faculty = (Faculty)userDatabase[student.GetStatus()];
-                    faculty.RemoveStudentAdvisee(student);
+                    Faculty faculty = (Faculty)userDatabase[student.GetStatus()];         
+                    userDatabase.Remove(userName);
+                    faculty.RemoveStudentAdvisee((Student)RegistrationDatabase.GetUser("PRyan"));
+                    //student.ChangeAdvisor("Staff");
                 }
-                userDatabase.Remove(userName);
+
             }
             catch
             {
