@@ -12,11 +12,11 @@ using System.Windows.Forms;
 
 namespace CS390
 {
-    public partial class AdminDashboard : Form
+    public partial class AdminManagerDashboard : Form
     {
         private Admin current_user;
 
-        public AdminDashboard()
+        public AdminManagerDashboard()
         {
             InitializeComponent();
             current_user = (Admin)LogInScreen.current_user;
@@ -25,7 +25,21 @@ namespace CS390
         private void Form2_Load(object sender, EventArgs e)
         {
             label1.Parent = pictureBox1;
+            label2.Parent = pictureBox1;
+            label3.Parent = pictureBox1;
+            label4.Parent = pictureBox1;
+            label5.Parent = pictureBox1;
+            label6.Parent = pictureBox1;
+            label7.Parent = pictureBox1;
+            label8.Parent = pictureBox1;
             label1.Location = new Point(10, label1.Location.Y);
+            label2.Location = new Point(label2.Location.X - 100, label2.Location.Y);
+            label3.Location = new Point(label3.Location.X - 100, label3.Location.Y);
+            label4.Location = new Point(label4.Location.X - 100, label4.Location.Y);
+            label5.Location = new Point(label5.Location.X - 100, label5.Location.Y);
+            label6.Location = new Point(label6.Location.X - 100, label6.Location.Y);
+            label7.Location = new Point(label7.Location.X - 100, label7.Location.Y);
+            label8.Location = new Point(label8.Location.X - 100, label8.Location.Y);
             var course_array = from row in RegistrationDatabase.GetCourses()
                                select new
                                {
@@ -45,7 +59,7 @@ namespace CS390
                                     Last = row.Value.GetLastName(),
                                     Username = row.Value.GetUserName(),
                                     CurrentAdvisor = row.Value.GetStatus()
-                               };
+                                };
             var faculty_array = from row in RegistrationDatabase.GetUserDatabase()
                                 where row.Value is Faculty
                                 select new
@@ -74,7 +88,12 @@ namespace CS390
             ((DataGridViewComboBoxColumn)dataGridView2.Columns["Advisor"]).DataSource = comboBox3.Items;
             foreach (DataGridViewRow d_row in dataGridView2.Rows)
             {
-                d_row.Cells[0].Value = RegistrationDatabase.GetUser((string)d_row.Cells[3].Value).GetStatus();
+                d_row.Cells[1].Value = RegistrationDatabase.GetUser((string)d_row.Cells[4].Value).GetStatus();
+            }
+            ((DataGridViewComboBoxColumn)dataGridView1.Columns["ChangeProfessor"]).DataSource = comboBox3.Items;
+            foreach (DataGridViewRow d_row in dataGridView2.Rows)
+            {
+                d_row.Cells[1].Value =(string)d_row.Cells[4].Value;
             }
         }
 
@@ -97,6 +116,7 @@ namespace CS390
             button5.FlatAppearance.BorderColor = Color.Empty;
             dataGridView1.Visible = true;
             label1.Visible = true;
+            button8.Visible = true;
             button6.Visible = false;
             comboBox1.Visible = false;
             button7.Visible = false;
@@ -104,6 +124,23 @@ namespace CS390
             dataGridView2.Visible = false;
             button9.Visible = false;
             dataGridView3.Visible = false;
+            button10.Visible = false;
+            button11.Visible = false;
+            textBox1.Visible = false;
+            textBox2.Visible = false;
+            textBox3.Visible = false;
+            textBox4.Visible = false;
+            textBox5.Visible = false;
+            textBox6.Visible = false;
+            label2.Visible = false;
+            label3.Visible = false;
+            label4.Visible = false;
+            label5.Visible = false;
+            label6.Visible = false;
+            label7.Visible = false;
+            label8.Visible = false;
+            button12.Visible = false;
+            button13.Visible = true;
         }
         private void button2_Click(object sender, EventArgs e)
         {
@@ -119,6 +156,7 @@ namespace CS390
             button5.FlatAppearance.BorderColor = Color.Empty;
             dataGridView1.Visible = false;
             label1.Visible = false;
+            button8.Visible = false;
             button6.Visible = true;
             comboBox1.Visible = true;
             button7.Visible = true;
@@ -126,6 +164,23 @@ namespace CS390
             dataGridView2.Visible = false;
             button9.Visible = false;
             dataGridView3.Visible = false;
+            button10.Visible = false;
+            button11.Visible = false;
+            textBox1.Visible = true;
+            textBox2.Visible = true;
+            textBox3.Visible = true;
+            textBox4.Visible = true;
+            textBox5.Visible = true;
+            textBox6.Visible = true;
+            label2.Visible = true;
+            label3.Visible = true;
+            label4.Visible = true;
+            label5.Visible = true;
+            label6.Visible = true;
+            label7.Visible = true;
+            label8.Visible = true;
+            button12.Visible = true;
+            button13.Visible = false;
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -142,6 +197,7 @@ namespace CS390
             button5.FlatAppearance.BorderColor = Color.Empty;
             dataGridView1.Visible = false;
             label1.Visible = false;
+            button8.Visible = false;
             button6.Visible = false;
             comboBox1.Visible = false;
             button7.Visible = false;
@@ -149,6 +205,23 @@ namespace CS390
             dataGridView2.Visible = true;
             button9.Visible = true;
             dataGridView3.Visible = false;
+            button10.Visible = false;
+            button11.Visible = true;
+            textBox1.Visible = false;
+            textBox2.Visible = false;
+            textBox3.Visible = false;
+            textBox4.Visible = false;
+            textBox5.Visible = false;
+            textBox6.Visible = false;
+            label2.Visible = false;
+            label3.Visible = false;
+            label4.Visible = false;
+            label5.Visible = false;
+            label6.Visible = false;
+            label7.Visible = false;
+            label8.Visible = false;
+            button12.Visible = false;
+            button13.Visible = false;
         }
         private void button4_Click(object sender, EventArgs e)
         {
@@ -164,6 +237,7 @@ namespace CS390
             button5.FlatAppearance.BorderColor = Color.Empty;
             dataGridView1.Visible = false;
             label1.Visible = false;
+            button8.Visible = false;
             button6.Visible = false;
             comboBox1.Visible = false;
             button7.Visible = false;
@@ -171,6 +245,23 @@ namespace CS390
             dataGridView2.Visible = false;
             button9.Visible = false;
             dataGridView3.Visible = true;
+            button10.Visible = true;
+            button11.Visible = false;
+            textBox1.Visible = false;
+            textBox2.Visible = false;
+            textBox3.Visible = false;
+            textBox4.Visible = false;
+            textBox5.Visible = false;
+            textBox6.Visible = false;
+            label2.Visible = false;
+            label3.Visible = false;
+            label4.Visible = false;
+            label5.Visible = false;
+            label6.Visible = false;
+            label7.Visible = false;
+            label8.Visible = false;
+            button12.Visible = false;
+            button13.Visible = false;
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -185,6 +276,7 @@ namespace CS390
             button3.FlatAppearance.BorderColor = Color.Empty;
             button4.FlatAppearance.BorderColor = Color.Empty;
             button1.FlatAppearance.BorderColor = Color.Empty;
+            button8.Visible = false;
             button6.Visible = false;
             comboBox1.Visible = false;
             button7.Visible = false;
@@ -192,6 +284,23 @@ namespace CS390
             dataGridView2.Visible = false;
             button9.Visible = false;
             dataGridView3.Visible = false;
+            button10.Visible = false;
+            button11.Visible = false;
+            textBox1.Visible = false;
+            textBox2.Visible = false;
+            textBox3.Visible = false;
+            textBox4.Visible = false;
+            textBox5.Visible = false;
+            textBox6.Visible = false;
+            label2.Visible = false;
+            label3.Visible = false;
+            label4.Visible = false;
+            label5.Visible = false;
+            label6.Visible = false;
+            label7.Visible = false;
+            label8.Visible = false;
+            button12.Visible = false;
+            button13.Visible = false;
             Close();
         }
 
@@ -202,7 +311,8 @@ namespace CS390
                 LogInScreen.current_user = RegistrationDatabase.GetUser(comboBox1.Text);
                 StudentDashboard form2 = new StudentDashboard();
                 form2.Show();
-            } catch
+            }
+            catch
             {
                 Console.WriteLine("Oops");
             }
@@ -222,14 +332,110 @@ namespace CS390
             }
         }
 
+        private void button8_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow d_row in dataGridView1.Rows)
+            {
+                object ischecked = d_row.Cells[0].Value;
+
+                if (ischecked == null)
+                {
+                }
+                else
+                {
+                    try
+                    {
+                        RegistrationDatabase.RemoveCourse((string)d_row.Cells[2].Value);
+                    }
+                    catch
+                    {
+                        System.Windows.Forms.MessageBox.Show("Error in removing course");
+                    }
+                }
+            }
+            Form2_Load(sender, e);
+        }
+
         private void button9_Click(object sender, EventArgs e)
         {
             foreach (DataGridViewRow d_row in dataGridView2.Rows)
             {
-                DataGridViewComboBoxCell cb = (DataGridViewComboBoxCell)d_row.Cells[0];
+                DataGridViewComboBoxCell cb = (DataGridViewComboBoxCell)d_row.Cells[1];
                 if (cb.Value != null)
                 {
-                    RegistrationDatabase.GetUser((string)d_row.Cells[3].Value).SetStatus((string)cb.Value);
+                    RegistrationDatabase.GetUser((string)d_row.Cells[4].Value).SetStatus((string)cb.Value);
+                }
+            }
+            Form2_Load(sender, e);
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow d_row in dataGridView3.Rows)
+            {
+                object ischecked = d_row.Cells[0].Value;
+
+                if (ischecked == null)
+                {
+                }
+                else
+                {
+                    try
+                    {
+                        RegistrationDatabase.RemoveUser((string)d_row.Cells[3].Value);
+                    }
+                    catch
+                    {
+                        System.Windows.Forms.MessageBox.Show("Error in removing faculty");
+                    }
+                }
+            }
+            Form2_Load(sender, e);
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow d_row in dataGridView2.Rows)
+            {
+                object ischecked = d_row.Cells[0].Value;
+
+                if (ischecked == null)
+                {
+                }
+                else
+                {
+                    try
+                    {
+                        RegistrationDatabase.RemoveUser((string)d_row.Cells[4].Value);
+                    }
+                    catch
+                    {
+                        System.Windows.Forms.MessageBox.Show("Error in removing student");
+                    }
+                }
+            }
+            Form2_Load(sender, e);
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                RegistrationDatabase.CreateUser(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text);
+            } catch
+            {
+                System.Windows.Forms.MessageBox.Show("Error creating user");
+            }
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow d_row in dataGridView1.Rows)
+            {
+                DataGridViewComboBoxCell cb = (DataGridViewComboBoxCell)d_row.Cells[1];
+                if (cb.Value != null)
+                {
+                    RegistrationDatabase.GetCourse((string)d_row.Cells[2].Value).SetFaculty((Faculty)RegistrationDatabase.GetUser((string)cb.Value));
                 }
             }
             Form2_Load(sender, e);

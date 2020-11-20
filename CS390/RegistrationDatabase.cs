@@ -134,7 +134,7 @@ namespace CS390
         /// <summary>
         /// Helper function for Read, creates a user object and adds it to the user database.
         /// </summary>
-        static void CreateUser(string userName, string password, string firstName,
+        public static void CreateUser(string userName, string password, string firstName,
                 string middleName, string lastName, string status)
         {
             User user;
@@ -325,7 +325,7 @@ namespace CS390
 
                     userDatabase.Remove(userName);
                 }
-                else if (userDatabase[userName].GetStatus().Equals("student"))
+                else // if (userDatabase[userName].GetStatus().Equals("student"))
                 {
                     Student student = (Student)userDatabase[userName];
 
@@ -364,7 +364,7 @@ namespace CS390
                 {
                     foreach (KeyValuePair<string, Course> courseS in student.Value.GetCourses())
                     {
-                        if (courseS.Value.GetCourseTerm().Equals("S15"))
+                        if (courseS.Value.GetCourseTerm() != null && courseS.Value.GetCourseTerm().Equals("S15"))
                         {
                             if (courseS.Value.GetCourseID() == courseID)
                                 student.Value.DropCourse(courseID);
