@@ -26,6 +26,26 @@ namespace CS390
 
             RegistrationDatabase.userDatabase.Add("Staff", new Faculty("Staff", "Staff", "Staff", "Staff", "Staff", "faculty"));
 
+            Admin admin = (Admin)RegistrationDatabase.GetUser("CVN");
+            Faculty faculty = (Faculty)RegistrationDatabase.GetUser("MRomney");
+
+            admin.RemoveUser("SLJackson");
+
+            foreach(Student student in faculty.GetStudentAdvisees())
+            {
+                Console.WriteLine(student.GetUserName());
+            }
+            //admin.RemoveCourse("ART-123-00");
+            //faculty.RemoveStudentAdvisee((Student)RegistrationDatabase.GetUser("PRyan"));
+            admin.RemoveUser("PRyan");
+
+            foreach (Student student in faculty.GetStudentAdvisees())
+            {
+                Console.WriteLine(student.GetUserName());
+            }
+
+            RegistrationDatabase.GetUser("PRyan");
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LogInScreen());
