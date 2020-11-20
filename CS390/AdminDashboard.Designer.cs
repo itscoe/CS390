@@ -38,18 +38,24 @@
             this.button2 = new System.Windows.Forms.Button();
             this.databaseTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Remove = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.Remove = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.button8 = new System.Windows.Forms.Button();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.Advisor = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.button9 = new System.Windows.Forms.Button();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.databaseTypeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -155,6 +161,11 @@
             this.dataGridView1.Size = new System.Drawing.Size(939, 402);
             this.dataGridView1.TabIndex = 1;
             // 
+            // Remove
+            // 
+            this.Remove.HeaderText = "Remove";
+            this.Remove.Name = "Remove";
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -215,11 +226,6 @@
             this.comboBox2.TabIndex = 8;
             this.comboBox2.Visible = false;
             // 
-            // Remove
-            // 
-            this.Remove.HeaderText = "Remove";
-            this.Remove.Name = "Remove";
-            // 
             // button8
             // 
             this.button8.Location = new System.Drawing.Point(929, 432);
@@ -230,11 +236,53 @@
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
+            // dataGridView2
+            // 
+            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Advisor});
+            this.dataGridView2.Location = new System.Drawing.Point(108, 28);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.RowHeadersWidth = 50;
+            this.dataGridView2.Size = new System.Drawing.Size(939, 402);
+            this.dataGridView2.TabIndex = 11;
+            this.dataGridView2.Visible = false;
+            // 
+            // Advisor
+            // 
+            this.Advisor.HeaderText = "Advisor";
+            this.Advisor.Name = "Advisor";
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(929, 432);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(116, 23);
+            this.button9.TabIndex = 12;
+            this.button9.Text = "Update Advisor";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
+            // dataGridView3
+            // 
+            this.dataGridView3.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Location = new System.Drawing.Point(109, 28);
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.RowHeadersWidth = 50;
+            this.dataGridView3.Size = new System.Drawing.Size(939, 402);
+            this.dataGridView3.TabIndex = 13;
+            this.dataGridView3.Visible = false;
+            // 
             // AdminDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1049, 457);
+            this.Controls.Add(this.dataGridView3);
+            this.Controls.Add(this.button9);
+            this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.comboBox2);
@@ -253,6 +301,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.databaseTypeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -276,5 +326,9 @@
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Remove;
         private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridViewComboBoxColumn Advisor;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.DataGridView dataGridView3;
     }
 }
