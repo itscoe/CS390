@@ -48,8 +48,15 @@ namespace CS390
                 } else if (current_user is Admin)
                 {
                     admin_perms = true;
-                    AdminDashboard form2 = new AdminDashboard();
-                    form2.Show();
+                    if (current_user.GetStatus() == "manager")
+                    {
+                        AdminManagerDashboard form2 = new AdminManagerDashboard();
+                        form2.Show();
+                    } else
+                    {
+                        AdminDashboard form2 = new AdminDashboard();
+                        form2.Show();
+                    }
                 }
                 Hide();
             }
