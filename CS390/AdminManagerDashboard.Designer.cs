@@ -37,6 +37,8 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Remove = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.ChangeProfessor = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.button6 = new System.Windows.Forms.Button();
@@ -65,7 +67,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.button13 = new System.Windows.Forms.Button();
             this.button14 = new System.Windows.Forms.Button();
@@ -90,8 +91,7 @@
             this.comboBox8 = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
             this.button15 = new System.Windows.Forms.Button();
-            this.Remove = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.ChangeProfessor = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.comboBox9 = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -199,6 +199,16 @@
             this.dataGridView1.RowHeadersWidth = 50;
             this.dataGridView1.Size = new System.Drawing.Size(939, 294);
             this.dataGridView1.TabIndex = 1;
+            // 
+            // Remove
+            // 
+            this.Remove.HeaderText = "Select";
+            this.Remove.Name = "Remove";
+            // 
+            // ChangeProfessor
+            // 
+            this.ChangeProfessor.HeaderText = "Professor";
+            this.ChangeProfessor.Name = "ChangeProfessor";
             // 
             // label1
             // 
@@ -465,14 +475,6 @@
             this.label7.TabIndex = 27;
             this.label7.Text = "Last Name";
             this.label7.Visible = false;
-            // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(703, 153);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(100, 20);
-            this.textBox6.TabIndex = 28;
-            this.textBox6.Visible = false;
             // 
             // label8
             // 
@@ -766,21 +768,20 @@
             this.button15.UseVisualStyleBackColor = true;
             this.button15.Click += new System.EventHandler(this.button15_Click);
             // 
-            // Remove
+            // comboBox9
             // 
-            this.Remove.HeaderText = "Select";
-            this.Remove.Name = "Remove";
-            // 
-            // ChangeProfessor
-            // 
-            this.ChangeProfessor.HeaderText = "Professor";
-            this.ChangeProfessor.Name = "ChangeProfessor";
+            this.comboBox9.FormattingEnabled = true;
+            this.comboBox9.Location = new System.Drawing.Point(703, 152);
+            this.comboBox9.Name = "comboBox9";
+            this.comboBox9.Size = new System.Drawing.Size(100, 21);
+            this.comboBox9.TabIndex = 53;
             // 
             // AdminManagerDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1049, 457);
+            this.Controls.Add(this.comboBox9);
             this.Controls.Add(this.button15);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.comboBox8);
@@ -805,7 +806,6 @@
             this.Controls.Add(this.checkedListBox1);
             this.Controls.Add(this.button13);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.textBox6);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -885,7 +885,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.Button button14;
@@ -912,5 +911,6 @@
         private System.Windows.Forms.Button button15;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Remove;
         private System.Windows.Forms.DataGridViewComboBoxColumn ChangeProfessor;
+        private System.Windows.Forms.ComboBox comboBox9;
     }
 }

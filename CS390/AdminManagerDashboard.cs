@@ -82,7 +82,23 @@ namespace CS390
             dataGridView1.DataSource = course_array.ToArray();
             dataGridView2.DataSource = student_array.ToArray();
             dataGridView3.DataSource = faculty_array.ToArray();
-            ComboBox comboBox9 = new ComboBox();
+            ComboBox comboBox10 = new ComboBox();
+            if (comboBox9.Items.Count > 0)
+            {
+                comboBox9.Items.Clear();
+            }
+            if (comboBox8.Items.Count > 0)
+            {
+                comboBox8.Items.Clear();
+            }
+            if (comboBox2.Items.Count > 0)
+            {
+                comboBox2.Items.Clear();
+            }
+            if (comboBox1.Items.Count > 0)
+            {
+                comboBox1.Items.Clear();
+            }
             foreach (User user in RegistrationDatabase.GetUserDatabase().Values)
             {
                 if (user is Student)
@@ -91,17 +107,20 @@ namespace CS390
                 }
                 if (user is Faculty)
                 {
+                    comboBox10.Items.Add(user.GetUserName());
                     comboBox9.Items.Add(user.GetUserName());
                     comboBox8.Items.Add(user.GetUserName());
                     comboBox2.Items.Add(user.GetUserName());
                 }
             }
-            ((DataGridViewComboBoxColumn)dataGridView2.Columns["Advisor"]).DataSource = comboBox9.Items;
+            comboBox9.Items.Add("faculty");
+            comboBox9.Items.Add("admin");
+            ((DataGridViewComboBoxColumn)dataGridView2.Columns["Advisor"]).DataSource = comboBox10.Items;
             foreach (DataGridViewRow d_row in dataGridView2.Rows)
             {
                 d_row.Cells[1].Value = RegistrationDatabase.GetUser((string)d_row.Cells[4].Value).GetStatus();
             }
-            ((DataGridViewComboBoxColumn)dataGridView1.Columns["ChangeProfessor"]).DataSource = comboBox9.Items;
+            ((DataGridViewComboBoxColumn)dataGridView1.Columns["ChangeProfessor"]).DataSource = comboBox10.Items;
             foreach (DataGridViewRow d_row in dataGridView1.Rows)
             {
                 d_row.Cells[1].Value =(string)d_row.Cells[4].Value;
@@ -142,7 +161,7 @@ namespace CS390
             textBox3.Visible = false;
             textBox4.Visible = false;
             textBox5.Visible = false;
-            textBox6.Visible = false;
+            comboBox9.Visible = false;
             label2.Visible = false;
             label3.Visible = false;
             label4.Visible = false;
@@ -204,7 +223,7 @@ namespace CS390
             textBox3.Visible = true;
             textBox4.Visible = true;
             textBox5.Visible = true;
-            textBox6.Visible = true;
+            comboBox9.Visible = true;
             label2.Visible = true;
             label3.Visible = true;
             label4.Visible = true;
@@ -267,7 +286,7 @@ namespace CS390
             textBox3.Visible = false;
             textBox4.Visible = false;
             textBox5.Visible = false;
-            textBox6.Visible = false;
+            comboBox9.Visible = false;
             label2.Visible = false;
             label3.Visible = false;
             label4.Visible = false;
@@ -329,7 +348,7 @@ namespace CS390
             textBox3.Visible = false;
             textBox4.Visible = false;
             textBox5.Visible = false;
-            textBox6.Visible = false;
+            comboBox9.Visible = false;
             label2.Visible = false;
             label3.Visible = false;
             label4.Visible = false;
@@ -390,7 +409,7 @@ namespace CS390
             textBox3.Visible = false;
             textBox4.Visible = false;
             textBox5.Visible = false;
-            textBox6.Visible = false;
+            comboBox9.Visible = false;
             label2.Visible = false;
             label3.Visible = false;
             label4.Visible = false;
@@ -432,6 +451,7 @@ namespace CS390
                 LogInScreen.current_user = RegistrationDatabase.GetUser(comboBox1.Text);
                 StudentDashboard form2 = new StudentDashboard();
                 form2.Show();
+                comboBox1.SelectedIndex = -1;
             }
             catch
             {
@@ -446,6 +466,7 @@ namespace CS390
                 LogInScreen.current_user = RegistrationDatabase.GetUser(comboBox2.Text);
                 ProfessorDashboard form2 = new ProfessorDashboard();
                 form2.Show();
+                comboBox2.SelectedIndex = -1;
             }
             catch
             {
@@ -542,11 +563,18 @@ namespace CS390
         {
             try
             {
-                RegistrationDatabase.CreateUser(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text);
+                RegistrationDatabase.CreateUser(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, (string)comboBox9.SelectedItem);
+                textBox1.Text = "";
+                textBox2.Text = "";
+                textBox3.Text = "";
+                textBox4.Text = "";
+                textBox5.Text = "";
+                comboBox9.SelectedIndex = -1;
             } catch
             {
                 System.Windows.Forms.MessageBox.Show("Error creating user");
             }
+            Form2_Load(sender, e);
         }
 
         private void button13_Click(object sender, EventArgs e)
